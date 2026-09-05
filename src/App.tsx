@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { getGameData } from './api/game-data';
-import type { GameData } from './data/types';
+import type { GameData } from './data/schema';
 import './App.css'
 
 function App() {

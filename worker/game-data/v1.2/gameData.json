@@ -1,11 +1,12 @@
 {
+  "version": "v1.2",
   "resources": {
     "Desc_LiquidOil_C": {
       "maxExtraction": 11700,
       "relativeValue": 622
     },
     "Desc_Water_C": {
-      "maxExtraction": null,
+      "maxExtraction": 0,
       "relativeValue": 1
     },
     "Desc_NitrogenGas_C": {
@@ -7695,6 +7696,7 @@
       "slug": "uranium_power_recipe",
       "name": "Uranium Power",
       "isAlternate": false,
+      "isConversion": false,
       "ingredients": [
         {
           "itemId": "Desc_NuclearFuelRod_C",
@@ -7718,6 +7720,7 @@
       "slug": "plutonium_power_recipe",
       "name": "Plutonium Power",
       "isAlternate": false,
+      "isConversion": false,
       "ingredients": [
         {
           "itemId": "Desc_PlutoniumFuelRod_C",
@@ -7741,6 +7744,7 @@
       "slug": "ficsonium_power_recipe",
       "name": "Ficsonium Power",
       "isAlternate": false,
+      "isConversion": false,
       "ingredients": [
         {
           "itemId": "Desc_FicsoniumFuelRod_C",

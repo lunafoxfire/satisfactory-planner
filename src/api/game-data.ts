@@ -1,11 +1,11 @@
-import type { GameData } from "../data/types";
+import { GameDataSchema } from "../data/schema";
 
-export async function getGameData(): Promise<GameData> {
+export async function getGameData() {
     const response = await fetch("/api/game-data");
 
     if (!response.ok) {
         throw new Error(`Failed to load game data: ${response.status}`);
     }
 
-    return response.json();
+    return GameDataSchema.parse(await response.json());
 }

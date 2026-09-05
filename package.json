@@ -10,11 +10,12 @@
 		"preview": "pnpm run build && vite preview",
 		"deploy": "pnpm run build && wrangler deploy",
 		"cf-typegen": "wrangler types",
-        "import-game-data": "tsx tools/import-game-data.ts"
+		"import-game-data": "tsx tools/import-game-data.ts"
 	},
 	"dependencies": {
 		"react": "^19.2.8",
-		"react-dom": "^19.2.8"
+		"react-dom": "^19.2.8",
+		"zod": "^4.5.4"
 	},
 	"devDependencies": {
 		"@cloudflare/vite-plugin": "^1.54.4",

@@ -1,12 +1,5 @@
-export interface Env {}
-
-const gameData = {
-    version: "1.2",
-    items: {},
-    recipes: {},
-    buildings: {},
-    resources: {},
-}
+export interface Env { }
+import gameData from "./game-data/v1.2/gameData.json" with { type: "json" };
 
 export default {
     async fetch(request: Request, env: Env): Promise<Response> {

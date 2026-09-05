@@ -2,9 +2,11 @@ import path from "node:path";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import YAML from "yaml";
 
+const CURRENT_VERSION = "v1.2";
+
 const PROJECT_ROOT = path.join(import.meta.dirname, "../");
 const INPUT_FILE = path.join(import.meta.dirname, "./game-data/satisfactory_data.yaml");
-const OUTPUT_FILE = path.join(PROJECT_ROOT, "worker/game-data/v1.2/gameData.json");
+const OUTPUT_FILE = path.join(PROJECT_ROOT, `worker/game-data/${CURRENT_VERSION}/gameData.json`);
 
 async function main() {
     const data = await loadGameData();
@@ -14,6 +16,7 @@ async function main() {
     const items = getItems(data.items, recipes, resources);
 
     writeParsedData({
+        version: CURRENT_VERSION,
         resources,
         buildings,
         recipes,
@@ -29,6 +32,33 @@ async function writeParsedData(gameData: any) {
     const json = JSON.stringify(gameData, null, 2);
     await mkdir(path.dirname(OUTPUT_FILE), { recursive: true });
     await writeFile(OUTPUT_FILE, json);
+}
+
+function getResources(resourcesData: Record<string, any>) {
+    const resources: Record<string, any> = {};
+    let highestMaxExtraction = 0;
+    Object.entries(resourcesData).forEach(([_, resourceData]) => {
+        if (Number.isFinite(resourceData.maxExtraction)) {
+            if (resourceData.maxExtraction > highestMaxExtraction) {
+                highestMaxExtraction = resourceData.maxExtraction;
+            }
+        }
+    });
+
+    Object.entries(resourcesData).forEach(([resourceKey, resourceData]) => {
+        let maxExtraction = 0;
+        let relativeValue = 1;
+        if (Number.isFinite(resourceData.maxExtraction)) {
+            maxExtraction = resourceData.maxExtraction;
+            relativeValue = Math.floor(highestMaxExtraction / maxExtraction * 100);
+        }
+        resources[resourceKey] = {
+            maxExtraction,
+            relativeValue,
+        };
+    });
+
+    return resources;
 }
 
 function getBuildings(
@@ -123,6 +153,7 @@ function getRecipes(
         slug: "uranium_power_recipe",
         name: "Uranium Power",
         isAlternate: false,
+        isConversion: false,
         ingredients: [
             { itemId: "Desc_NuclearFuelRod_C", perMinute: 0.2 },
             { itemId: "Desc_Water_C", perMinute: 240 }
@@ -136,6 +167,7 @@ function getRecipes(
         slug: "plutonium_power_recipe",
         name: "Plutonium Power",
         isAlternate: false,
+        isConversion: false,
         ingredients: [
             { itemId: "Desc_PlutoniumFuelRod_C", perMinute: 0.1 },
             { itemId: "Desc_Water_C", perMinute: 240 }
@@ -149,6 +181,7 @@ function getRecipes(
         slug: "ficsonium_power_recipe",
         name: "Ficsonium Power",
         isAlternate: false,
+        isConversion: false,
         ingredients: [
             { itemId: "Desc_FicsoniumFuelRod_C", perMinute: 1 },
             { itemId: "Desc_Water_C", perMinute: 240 }
@@ -158,32 +191,6 @@ function getRecipes(
         isFicsmas: false,
     };
     return recipes;
-}
-
-function getResources(resourcesData: Record<string, any>) {
-    const resources: Record<string, any> = {};
-    let highestMaxExtraction = 0;
-    Object.entries(resourcesData).forEach(([_, resourceData]) => {
-        if (Number.isFinite(resourceData.maxExtraction)) {
-            if (resourceData.maxExtraction > highestMaxExtraction) {
-                highestMaxExtraction = resourceData.maxExtraction;
-            }
-        }
-    });
-
-    Object.entries(resourcesData).forEach(([resourceKey, resourceData]) => {
-        const maxExtraction = resourceData.maxExtraction;
-        let relativeValue = 1;
-        if (Number.isFinite(maxExtraction)) {
-            relativeValue = Math.floor(highestMaxExtraction / maxExtraction * 100);
-        }
-        resources[resourceKey] = {
-            maxExtraction,
-            relativeValue,
-        };
-    });
-
-    return resources;
 }
 
 function getItems(
