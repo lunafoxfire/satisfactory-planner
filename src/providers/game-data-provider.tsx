@@ -1,8 +1,19 @@
-import { useEffect, useState } from "react";
+import {
+    createContext,
+    type PropsWithChildren,
+    useEffect,
+    useState,
+} from "react";
 import { getGameData } from "#api/game-data";
 import type { GameData } from "#data/schema";
 
-export function MainBody() {
+interface GameDataContextValue {
+    gameData: GameData;
+}
+
+export const GameDataContext = createContext<GameDataContextValue | null>(null);
+
+export function GameDataProvider({ children }: PropsWithChildren) {
     const [gameData, setGameData] = useState<GameData | null>(null);
     const [error, setError] = useState<Error | null>(null);
 
@@ -21,13 +32,8 @@ export function MainBody() {
     }
 
     return (
-        <div>
-            <h1>Satisfactory Planner</h1>
-            <div>Game data version: {gameData.version}</div>
-            <div>Items: {Object.keys(gameData.items).length}</div>
-            <div>Recipes: {Object.keys(gameData.recipes).length}</div>
-            <div>Buildings: {Object.keys(gameData.buildings).length}</div>
-            <div>Resources: {Object.keys(gameData.resources).length}</div>
-        </div>
+        <GameDataContext.Provider value={{ gameData }}>
+            {children}
+        </GameDataContext.Provider>
     );
 }

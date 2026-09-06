@@ -1,9 +1,9 @@
-import { AppShell } from "#components/layout/app-shell";
+import { AppShell } from "#components/app/app-shell";
 
 export function App() {
     return (
-        <AppShell></AppShell>
-    )
+        <AppShell />
+    );
 }
 
-export default App
+export default App;

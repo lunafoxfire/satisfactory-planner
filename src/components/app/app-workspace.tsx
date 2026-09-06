@@ -1,7 +1,6 @@
 import { useState } from "react";
-import { InputsPanel } from "./inputs-panel";
-import { ReportsPanel } from "./reports-panel";
-import { MainBody } from "./main-body";
+import { ControlPanelContainer } from "#components/control-panel/control-panel-container";
+import { ReportsPanelContainer } from "#components/reports-panel/reports-panel-container";
 
 export function AppWorkspace() {
     const [inputsOpen, setInputsOpen] = useState(true);
@@ -19,16 +18,15 @@ export function AppWorkspace() {
                 .filter(Boolean)
                 .join(" ")}
         >
-            <InputsPanel
+            <ControlPanelContainer
                 open={inputsOpen}
                 onOpenChange={setInputsOpen}
             />
 
             <main className="min-w-0 overflow-hidden">
-                <MainBody />
             </main>
 
-            <ReportsPanel
+            <ReportsPanelContainer
                 open={reportOpen}
                 onOpenChange={setReportOpen}
             />

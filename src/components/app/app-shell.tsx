@@ -1,3 +1,4 @@
+import { GameDataProvider } from "#providers/game-data-provider";
 import { AppHeader } from "./app-header";
 import { AppWorkspace } from "./app-workspace";
 
@@ -7,7 +8,9 @@ export function AppShell() {
             <AppHeader />
 
             <div className="min-h-0 flex-1">
-                <AppWorkspace />
+                <GameDataProvider>
+                    <AppWorkspace />
+                </GameDataProvider>
             </div>
         </div>
     );
