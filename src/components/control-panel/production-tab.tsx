@@ -9,10 +9,9 @@ import type { DropdownItem } from "#components/dropdown";
 
 export function ProductionTab() {
     const gameData = useGameData();
+
     const productionTargets = usePlannerStore((state) => state.production.targets);
-    const addProductionTarget = usePlannerStore(
-        (state) => state.addProductionTarget,
-    );
+    const addProductionTarget = usePlannerStore((state) => state.addProductionTarget);
 
     const producableItems: DropdownItem[] = Object.entries(gameData.items)
         .filter(([_, item]) => item.producedFromRecipes.length > 0)
@@ -28,13 +27,13 @@ export function ProductionTab() {
 
 
     return (
-        <div className="flex h-full min-h-0 flex-col">
+        <div className="flex flex-col">
             <SectionCard
                 title="Production Targets"
                 description="Select your production targets. When maximizing multiple outputs, the lower priority number will be maximized first."
             >
                 {productionTargets.length === 0 ? (
-                    <div className="flex h-full min-h-32 items-center justify-center rounded-md border border-dashed">
+                    <div className="flex h-32 items-center justify-center rounded-md border border-dashed">
                         <Button
                             variant="ghost"
                             onClick={addProductionTarget}
@@ -44,7 +43,7 @@ export function ProductionTab() {
                         </Button>
                     </div>
                 ) : (
-                    <div className="flex flex-col gap-2">
+                    <div className="flex flex-col gap-4">
                         {productionTargets.map((target) => (
                             <ProductionTarget
                                 key={target.id}

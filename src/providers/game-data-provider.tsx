@@ -6,6 +6,7 @@ import {
 } from "react";
 import { getGameData } from "#api/game-data";
 import type { GameData } from "#data/schema";
+import { usePlannerStore } from "#lib/store/store";
 
 interface GameDataContextValue {
     gameData: GameData;
@@ -16,10 +17,16 @@ export const GameDataContext = createContext<GameDataContextValue | null>(null);
 export function GameDataProvider({ children }: PropsWithChildren) {
     const [gameData, setGameData] = useState<GameData | null>(null);
     const [error, setError] = useState<Error | null>(null);
+    const initResources = usePlannerStore(
+        (state) => state.initInputResources,
+    );
 
     useEffect(() => {
         getGameData()
-            .then(setGameData)
+            .then((gameData) => {
+                setGameData(gameData);
+                initResources(gameData);
+            })
             .catch(setError);
     }, []);
 

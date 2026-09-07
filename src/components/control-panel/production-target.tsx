@@ -13,35 +13,23 @@ export function ProductionTarget({
     id,
     items,
 }: ProductionTargetProps) {
-    const target = usePlannerStore((state) =>
-        state.production.targets.find((target) => target.id === id),
+    const item = usePlannerStore((state) =>
+        state.production.targets.find((item) => item.id === id),
     );
 
-    const setItem = usePlannerStore(
-        (state) => state.setProductionTargetItem,
-    );
-    const setMode = usePlannerStore(
-        (state) => state.setProductionTargetMode,
-    );
-    const setRate = usePlannerStore(
-        (state) => state.setProductionTargetRate,
-    );
-    const setMultiplier = usePlannerStore(
-        (state) => state.setProductionTargetMultiplier,
-    );
-    const setPriority = usePlannerStore(
-        (state) => state.setProductionTargetPriority,
-    );
-    const remove = usePlannerStore(
-        (state) => state.removeProductionTarget,
-    );
+    const setItem = usePlannerStore((state) => state.setProductionTargetItem);
+    const setMode = usePlannerStore((state) => state.setProductionTargetMode);
+    const setRate = usePlannerStore((state) => state.setProductionTargetRate);
+    const setMultiplier = usePlannerStore((state) => state.setProductionTargetMultiplier);
+    const setPriority = usePlannerStore((state) => state.setProductionTargetPriority);
+    const removeItem = usePlannerStore((state) => state.removeProductionTarget);
 
-    if (!target) {
+    if (!item) {
         return null;
     }
 
     return (
-        <div className="flex flex-col gap-3 rounded-sm border p-2">
+        <div className="flex flex-col gap-2 rounded-sm border p-2">
             <div className="flex gap-2">
                 <Dropdown
                     label="Item"
@@ -49,7 +37,7 @@ export function ProductionTarget({
                     clearable
                     placeholder="Select an item"
                     items={items}
-                    value={target.itemId}
+                    value={item.itemId}
                     onValueChange={(itemId) => setItem(id, itemId)}
                 />
 
@@ -57,7 +45,7 @@ export function ProductionTarget({
                     variant="ghost"
                     size="icon"
                     className="shrink-0 text-muted-foreground hover:text-destructive mt-3.5"
-                    onClick={() => remove(id)}
+                    onClick={() => removeItem(id)}
                     aria-label="Remove production target"
                 >
                     <Trash2 />
@@ -68,7 +56,7 @@ export function ProductionTarget({
                 <Dropdown
                     label="Mode"
                     className="flex-2"
-                    value={target.mode}
+                    value={item.mode}
                     onValueChange={(mode) => {
                         if (
                             mode === "itemsPerMinute" ||
@@ -94,39 +82,39 @@ export function ProductionTarget({
                     ]}
                 />
 
-                {target.mode === "itemsPerMinute" && (
+                {item.mode === "itemsPerMinute" && (
                     <TextInput
                         label="Rate"
                         type="number"
                         min={0}
                         step={1}
-                        value={target.rate}
+                        value={item.rate}
                         onChange={(event) => setRate(id, Number(event.target.value))}
-                        aria-label="Items per minute"
+                        aria-label="Target items per minute"
                         className="flex-1"
                     />
                 )}
 
-                {target.mode === "fromRecipe" && (
+                {item.mode === "fromRecipe" && (
                     <TextInput
                         label="Multiplier"
                         type="number"
                         min={0}
                         step={1}
-                        value={target.multiplier}
+                        value={item.multiplier}
                         onChange={(event) => setMultiplier(id, Number(event.target.value))}
-                        aria-label="Recipe multiplier"
+                        aria-label="Target recipe multiplier"
                         className="flex-1"
                     />
                 )}
 
-                {target.mode === "maximize" && (
+                {item.mode === "maximize" && (
                     <TextInput
                         label="Priority"
                         type="number"
                         min={0}
                         step={1}
-                        value={target.priority}
+                        value={item.priority}
                         onChange={(event) => setPriority(id, Number(event.target.value))}
                         aria-label="Maximization priority"
                         className="flex-1"
