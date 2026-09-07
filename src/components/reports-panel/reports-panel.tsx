@@ -13,7 +13,7 @@ export function ReportsPanel() {
     const [tab, setTab] = useState("statistics");
 
     return (
-        <aside className="absolute inset-y-0 right-0 z-20 flex flex-col w-80 min-h-0 border-l bg-background pb-14">
+        <aside className="absolute inset-y-0 right-0 z-20 flex flex-col w-100 min-h-0 border-l bg-background pb-14">
             <header className="flex h-10 shrink-0 items-center border-b bg-muted p-2">
                 <h2 className="text-md font-semibold">// Reports</h2>
             </header>

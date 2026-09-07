@@ -45,7 +45,7 @@ export function CheckboxInput({
                 <FieldLabel
                     htmlFor={id}
                     className={cn(
-                        variant === "compact" && "text-[0.7rem]",
+                        variant === "compact" && "text-[0.75rem]",
                     )}
                 >
                     {label}
