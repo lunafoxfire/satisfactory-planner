@@ -105,7 +105,7 @@ export const createInputSlice: StateCreator<PlannerStore, [], [], InputSlice>
                 },
             })),
 
-        initInputResources: (gameData: GameData) =>
+        initInputResources: (gameData) =>
             set((state) => {
                 const resources: InputResource[] = [];
 

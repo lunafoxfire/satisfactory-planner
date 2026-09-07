@@ -7,6 +7,7 @@ import { Plus } from "lucide-react";
 import { InputItem } from "./input-item";
 import { InputResource } from "./input-resource";
 import { CheckboxInput } from "#components/checkbox-input";
+import { useMemo } from "react";
 
 export function InputsTab() {
     const gameData = useGameData();
@@ -15,18 +16,16 @@ export function InputsTab() {
     const addInputItem = usePlannerStore((state) => state.addInputItem);
 
     const inputResources = usePlannerStore((state) => state.input.resources);
-    inputResources.sort((a, b) => {
+    const sortedInputResources = [...inputResources].sort((a, b) => {
         const aValue = gameData.resources[a.itemId].relativeValue;
         const bValue = gameData.resources[b.itemId].relativeValue;
-        if (aValue > bValue) return 1;
-        if (aValue < bValue) return -1;
-        return 0;
+        return aValue - bValue;
     });
 
     const allowHandGathered = usePlannerStore((state) => state.input.allowHandGathered);
     const setAllowHandGathered = usePlannerStore((state) => state.setAllowHandGathered);
 
-    const availableItems: DropdownItem[] = Object.entries(gameData.items)
+    const availableItems: DropdownItem[] = useMemo(() => Object.entries(gameData.items)
         .filter(([_, item]) => item.usedInRecipes.length > 0)
         .map(([itemId, item]) => ({
             value: itemId,
@@ -36,7 +35,7 @@ export function InputsTab() {
             if (a.label > b.label) return 1;
             if (a.label < b.label) return -1;
             return 0;
-        });
+        }), [gameData.items]);
 
     return (
         <div className="flex flex-col">
@@ -86,7 +85,7 @@ export function InputsTab() {
                     />
                 </div>
                 <div className="flex flex-col gap-4">
-                    {inputResources.map((item) => (
+                    {sortedInputResources.map((item) => (
                         <InputResource
                             key={item.itemId}
                             itemId={item.itemId}

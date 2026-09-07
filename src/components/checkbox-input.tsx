@@ -7,12 +7,14 @@ export interface CheckboxInputProps
     extends React.ComponentProps<typeof Checkbox> {
     label?: string;
     id?: string;
+    variant?: "default" | "compact";
     className?: string;
 }
 
 export function CheckboxInput({
     label,
     id: providedId,
+    variant = "default",
     className,
     ...checkboxProps
 }: CheckboxInputProps) {
@@ -22,15 +24,30 @@ export function CheckboxInput({
     return (
         <Field
             orientation="horizontal"
-            className={cn("w-full", className)}
+            className={cn(
+                "w-full",
+                variant === "compact" && "gap-1",
+                className,
+            )}
         >
             <Checkbox
                 {...checkboxProps}
                 id={id}
+                className={cn(
+                    variant === "compact" && "size-3 [&_svg]:size-1",
+                )}
+                indicatorClassName={cn(
+                    variant === "compact" && "[&>svg]:size-2.5",
+                )}
             />
 
             {label && (
-                <FieldLabel htmlFor={id}>
+                <FieldLabel
+                    htmlFor={id}
+                    className={cn(
+                        variant === "compact" && "text-[0.7rem]",
+                    )}
+                >
                     {label}
                 </FieldLabel>
             )}

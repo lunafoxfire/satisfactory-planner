@@ -17,15 +17,15 @@ export const GameDataContext = createContext<GameDataContextValue | null>(null);
 export function GameDataProvider({ children }: PropsWithChildren) {
     const [gameData, setGameData] = useState<GameData | null>(null);
     const [error, setError] = useState<Error | null>(null);
-    const initResources = usePlannerStore(
-        (state) => state.initInputResources,
-    );
+    const initResources = usePlannerStore((state) => state.initInputResources);
+    const initRecipes = usePlannerStore((state) => state.initRecipes);
 
     useEffect(() => {
         getGameData()
             .then((gameData) => {
                 setGameData(gameData);
                 initResources(gameData);
+                initRecipes(gameData);
             })
             .catch(setError);
     }, []);
