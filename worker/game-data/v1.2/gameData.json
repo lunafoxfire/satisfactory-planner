@@ -7692,9 +7692,9 @@
       "producedIn": "Desc_AssemblerMk1_C",
       "isFicsmas": false
     },
-    "Recipe_CUSTOM_UraniumPower_C": {
+    "Recipe_NuclearPower_C": {
       "slug": "uranium_power_recipe",
-      "name": "Uranium Power",
+      "name": "Uranium Nuclear Power",
       "isAlternate": false,
       "isConversion": false,
       "ingredients": [
@@ -7716,9 +7716,9 @@
       "producedIn": "Desc_GeneratorNuclear_C",
       "isFicsmas": false
     },
-    "Recipe_CUSTOM_PlutoniumPower_C": {
+    "Recipe_PlutoniumPower_C": {
       "slug": "plutonium_power_recipe",
-      "name": "Plutonium Power",
+      "name": "Plutonium Nuclear Power",
       "isAlternate": false,
       "isConversion": false,
       "ingredients": [
@@ -7740,9 +7740,9 @@
       "producedIn": "Desc_GeneratorNuclear_C",
       "isFicsmas": false
     },
-    "Recipe_CUSTOM_FicsoniumPower_C": {
+    "Recipe_FicsoniumPower_C": {
       "slug": "ficsonium_power_recipe",
-      "name": "Ficsonium Power",
+      "name": "Ficsonium Nuclear Power",
       "isAlternate": false,
       "isConversion": false,
       "ingredients": [
@@ -9059,7 +9059,7 @@
         "Recipe_Alternate_FertileUranium_C"
       ],
       "producedFromRecipes": [
-        "Recipe_CUSTOM_UraniumPower_C"
+        "Recipe_NuclearPower_C"
       ],
       "isResource": false,
       "isHandGathered": false,
@@ -9073,7 +9073,7 @@
         "Recipe_Ficsonium_C"
       ],
       "producedFromRecipes": [
-        "Recipe_CUSTOM_PlutoniumPower_C"
+        "Recipe_PlutoniumPower_C"
       ],
       "isResource": false,
       "isHandGathered": false,
@@ -10304,7 +10304,7 @@
       "name": "Uranium Fuel Rod",
       "sinkPoints": 43468,
       "usedInRecipes": [
-        "Recipe_CUSTOM_UraniumPower_C"
+        "Recipe_NuclearPower_C"
       ],
       "producedFromRecipes": [
         "Recipe_NuclearFuelRod_C",
@@ -10319,7 +10319,7 @@
       "name": "Plutonium Fuel Rod",
       "sinkPoints": 153184,
       "usedInRecipes": [
-        "Recipe_CUSTOM_PlutoniumPower_C"
+        "Recipe_PlutoniumPower_C"
       ],
       "producedFromRecipes": [
         "Recipe_PlutoniumFuelRod_C",
@@ -10334,7 +10334,7 @@
       "name": "Ficsonium Fuel Rod",
       "sinkPoints": 0,
       "usedInRecipes": [
-        "Recipe_CUSTOM_FicsoniumPower_C"
+        "Recipe_FicsoniumPower_C"
       ],
       "producedFromRecipes": [
         "Recipe_FicsoniumFuelRod_C"
@@ -10418,9 +10418,9 @@
         "Recipe_Alternate_PureIronIngot_C",
         "Recipe_Alternate_PureCopperIngot_C",
         "Recipe_Alternate_PureCateriumIngot_C",
-        "Recipe_CUSTOM_UraniumPower_C",
-        "Recipe_CUSTOM_PlutoniumPower_C",
-        "Recipe_CUSTOM_FicsoniumPower_C"
+        "Recipe_NuclearPower_C",
+        "Recipe_PlutoniumPower_C",
+        "Recipe_FicsoniumPower_C"
       ],
       "producedFromRecipes": [
         "Recipe_NonFissileUranium_C",

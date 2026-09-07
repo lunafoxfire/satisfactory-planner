@@ -149,9 +149,9 @@ function getRecipes(
         };
     });
 
-    recipes["Recipe_CUSTOM_UraniumPower_C"] = {
+    recipes["Recipe_NuclearPower_C"] = {
         slug: "uranium_power_recipe",
-        name: "Uranium Power",
+        name: "Uranium Nuclear Power",
         isAlternate: false,
         isConversion: false,
         ingredients: [
@@ -163,9 +163,9 @@ function getRecipes(
         isFicsmas: false,
     };
 
-    recipes["Recipe_CUSTOM_PlutoniumPower_C"] = {
+    recipes["Recipe_PlutoniumPower_C"] = {
         slug: "plutonium_power_recipe",
-        name: "Plutonium Power",
+        name: "Plutonium Nuclear Power",
         isAlternate: false,
         isConversion: false,
         ingredients: [
@@ -177,9 +177,9 @@ function getRecipes(
         isFicsmas: false,
     };
 
-    recipes["Recipe_CUSTOM_FicsoniumPower_C"] = {
+    recipes["Recipe_FicsoniumPower_C"] = {
         slug: "ficsonium_power_recipe",
-        name: "Ficsonium Power",
+        name: "Ficsonium Nuclear Power",
         isAlternate: false,
         isConversion: false,
         ingredients: [
