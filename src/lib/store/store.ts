@@ -1,10 +1,12 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import { createProductionSlice, type ProductionSlice } from "./production";
-import { createInputSlice, type InputSlice } from "./inputs";
-import { createRecipeSlice, type RecipeSlice } from "./recipes";
+import { createProductionSlice, type ProductionActions, type ProductionState } from "./production";
+import { createInputSlice, type InputActions, type InputState } from "./inputs";
+import { createRecipeSlice, type RecipeActions, type RecipeState } from "./recipes";
 
-export type PlannerStore = ProductionSlice & InputSlice & RecipeSlice;
+export type PlannerState = ProductionState & InputState & RecipeState;
+export type PlannerActions = ProductionActions & InputActions & RecipeActions;
+export type PlannerStore = PlannerState & PlannerActions;
 
 export const usePlannerStore = create<PlannerStore>()(
     persist(
