@@ -29,7 +29,7 @@ export interface LinearModel {
     objective: LinearObjective;
 }
 
-export function buildLinearModel(problem: SolverSubproblem): LinearModel {
+export function compileLinearModel(problem: SolverSubproblem): LinearModel {
     return {
         bounds: compileBounds(problem),
         constraints: compileConstraints(problem),
@@ -54,15 +54,11 @@ function compileBounds(problem: SolverSubproblem): LinearBound[] {
     return bounds;
 }
 
-function constraintId(id: string): string {
-    return `${id}_CONSTRAINT`;
-}
-
 function compileConstraints(problem: SolverSubproblem): LinearConstraint[] {
     const constraints: LinearConstraint[] = [];
     for (const [itemId, item] of Object.entries(problem.items)) {
         const constraint: LinearConstraint = {
-            id: constraintId(itemId),
+            id: itemId,
             coefficients: [],
             lowerBound: 0,
         };
@@ -82,7 +78,7 @@ function compileConstraints(problem: SolverSubproblem): LinearConstraint[] {
             if (usedIn) {
                 constraint.coefficients.push({
                     variable: recipeId,
-                    coefficient: usedIn.rate,
+                    coefficient: -usedIn.rate,
                 });
             }
         }
@@ -92,10 +88,12 @@ function compileConstraints(problem: SolverSubproblem): LinearConstraint[] {
             if (producedFrom) {
                 constraint.coefficients.push({
                     variable: recipeId,
-                    coefficient: -producedFrom.rate,
+                    coefficient: producedFrom.rate,
                 });
             }
         }
+
+        constraints.push(constraint);
     }
     return constraints;
 }
@@ -128,12 +126,12 @@ function compileObjective(problem: SolverSubproblem): LinearObjective {
         for (const [resourceId, resource] of Object.entries(problem.inputs)) {
             const usedIn = recipe.ingredients.find((i) => i.itemId === resourceId);
             if (usedIn) {
-                resourcePenalty += resource.relativeValue * usedIn.rate;
+                resourcePenalty += resource.relativeValue / 100 * usedIn.rate;
             }
 
             const producedIn = recipe.products.find((p) => p.itemId === resourceId);
             if (producedIn) {
-                resourcePenalty -= resource.relativeValue * producedIn.rate;
+                resourcePenalty -= resource.relativeValue / 100 * producedIn.rate;
             }
         }
 
