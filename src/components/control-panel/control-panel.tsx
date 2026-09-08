@@ -9,15 +9,26 @@ import { ProductionTab } from "./production-tab";
 import { InputsTab } from "./inputs-tab";
 import { RecipesTab } from "./recipes-tab";
 import { ScrollArea } from "#components/ui/scroll-area";
+import { Button } from "#components/ui/button";
+import { solve } from "#lib/solver/solver";
+import { useGameData } from "#hooks/use-game-data";
+import { usePlannerStore } from "#lib/store/store";
 
 export function ControlPanel() {
     const [tab, setTab] = useState("production");
+    const gameData = useGameData();
+    const plannerStore = usePlannerStore((state) => state);
 
     return (
         <aside className="absolute inset-y-0 left-0 z-20 flex flex-col w-100 min-h-0 border-r bg-background pb-14">
             <header className="flex h-10 shrink-0 items-center border-b bg-muted p-2">
                 <h2 className="text-md font-semibold">// Control Panel</h2>
             </header>
+            <Button
+                onClick={() => { solve(gameData, plannerStore); }}
+            >
+                Solve
+            </Button>
             <Tabs
                 value={tab}
                 onValueChange={setTab}

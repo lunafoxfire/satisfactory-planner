@@ -39,15 +39,15 @@ export function buildLinearModel(problem: SolverSubproblem): LinearModel {
 
 function compileBounds(problem: SolverSubproblem): LinearBound[] {
     const bounds: LinearBound[] = [];
-    for (const item of problem.items) {
+    for (const [itemId, _item] of Object.entries(problem.items)) {
         bounds.push({
-            variable: item.itemId,
+            variable: itemId,
             lowerBound: 0,
         });
     }
-    for (const recipe of problem.recipes) {
+    for (const [recipeId, _recipe] of Object.entries(problem.recipes)) {
         bounds.push({
-            variable: recipe.recipeId,
+            variable: recipeId,
             lowerBound: 0,
         });
     }
@@ -60,39 +60,39 @@ function constraintId(id: string): string {
 
 function compileConstraints(problem: SolverSubproblem): LinearConstraint[] {
     const constraints: LinearConstraint[] = [];
-    for (const { itemId } of problem.items) {
+    for (const [itemId, item] of Object.entries(problem.items)) {
         const constraint: LinearConstraint = {
             id: constraintId(itemId),
             coefficients: [],
             lowerBound: 0,
         };
 
-        for (const input of problem.inputs) {
-            if (input.itemId === itemId) {
-                constraint.lowerBound! -= input.rate;
-            }
+        const input = problem.inputs[itemId];
+        if (input) {
+            constraint.lowerBound! -= input.rate;
         }
 
-        for (const target of problem.targets) {
-            if (target.itemId === itemId) {
-                constraint.lowerBound! += target.rate;
-            }
+        const target = problem.targets[itemId];
+        if (target) {
+            constraint.lowerBound! += target.rate;
         }
 
-        for (const recipe of problem.recipes) {
-            const usedIn = recipe.ingredients.find((i) => i.itemId === itemId);
+        for (const recipeId of item.usedInRecipes) {
+            const usedIn = problem.recipes[recipeId]?.ingredients.find((i) => i.itemId === itemId);
             if (usedIn) {
                 constraint.coefficients.push({
-                    variable: recipe.recipeId,
+                    variable: recipeId,
                     coefficient: usedIn.rate,
                 });
             }
+        }
 
-            const producedIn = recipe.products.find((p) => p.itemId === itemId);
-            if (producedIn) {
+        for (const recipeId of item.producedFromRecipes) {
+            const producedFrom = problem.recipes[recipeId]?.products.find((p) => p.itemId === itemId);
+            if (producedFrom) {
                 constraint.coefficients.push({
-                    variable: recipe.recipeId,
-                    coefficient: -producedIn.rate,
+                    variable: recipeId,
+                    coefficient: -producedFrom.rate,
                 });
             }
         }
@@ -123,15 +123,15 @@ function compileObjective(problem: SolverSubproblem): LinearObjective {
     const areaMultiplier =
         problem.currentObjective.type === "minimizeFactoryArea" ? 1000 : 1;
 
-    for (const recipe of problem.recipes) {
+    for (const [recipeId, recipe] of Object.entries(problem.recipes)) {
         let resourcePenalty = 0;
-        for (const resource of problem.inputs) {
-            const usedIn = recipe.ingredients.find((i) => i.itemId === resource.itemId);
+        for (const [resourceId, resource] of Object.entries(problem.inputs)) {
+            const usedIn = recipe.ingredients.find((i) => i.itemId === resourceId);
             if (usedIn) {
                 resourcePenalty += resource.relativeValue * usedIn.rate;
             }
 
-            const producedIn = recipe.products.find((p) => p.itemId === resource.itemId);
+            const producedIn = recipe.products.find((p) => p.itemId === resourceId);
             if (producedIn) {
                 resourcePenalty -= resource.relativeValue * producedIn.rate;
             }
@@ -150,7 +150,7 @@ function compileObjective(problem: SolverSubproblem): LinearObjective {
             + areaMultiplier * areaPenalty;
 
         objective.coefficients.push({
-            variable: recipe.recipeId,
+            variable: recipeId,
             coefficient: totalPenalty,
         });
     }
