@@ -28,25 +28,22 @@ export interface SolverTarget {
     rate: number;
 }
 
-export type SolverObjective =
-    | { type: "maximizeItem", itemId: string; }
-    | { type: "minimizeResourceUsage"; }
-    | { type: "minimizePowerUsage"; }
-    | { type: "minimizeFactoryArea"; };
+export interface SolverMaximizeTarget {
+    priority: number;
+}
 
-export interface SolverData {
+export type SolverObjective =
+    | "minimizeResourceUsage"
+    | "minimizePowerUsage"
+    | "minimizeFactoryArea";
+
+export type SolverProblem = {
     items: Record<string, SolverItem>;
     recipes: Record<string, SolverRecipe>;
     inputs: Record<string, SolverInput>;
     targets: Record<string, SolverTarget>;
-}
-
-export type SolverProblem = SolverData & {
-    objectives: SolverObjective[];
-};
-
-export type SolverSubproblem = SolverData & {
-    currentObjective: SolverObjective;
+    maximizeTargets: Record<string, SolverMaximizeTarget>;
+    objective: SolverObjective;
 };
 
 export function compileSolverProblem(gameData: GameData, store: PlannerState): SolverProblem {
@@ -55,7 +52,8 @@ export function compileSolverProblem(gameData: GameData, store: PlannerState): S
         recipes: compileSolverRecipes(gameData, store),
         inputs: compileSolverInputs(gameData, store),
         targets: compileSolverTargets(gameData, store),
-        objectives: compileSolverObjectives(gameData, store),
+        maximizeTargets: compileSolverMaximizeTargets(gameData, store),
+        objective: compileSolverObjective(gameData, store),
     };
     return cleanSolverProblem(solverProblem);
 }
@@ -158,7 +156,7 @@ function compileSolverInputs(gameData: GameData, store: PlannerState): Record<st
             if (item.isHandGathered) {
                 solverInputs[itemId] = {
                     rate: Infinity,
-                    relativeValue: 1,
+                    relativeValue: 1000,
                 };
             }
         }
@@ -208,18 +206,29 @@ function compileSolverTargets(gameData: GameData, store: PlannerState): Record<s
     return solverTargets;
 }
 
-function compileSolverObjectives(_gameData: GameData, store: PlannerState): SolverObjective[] {
-    const solverObjectives: SolverObjective[] = store.production.targets
-        .filter((t) => t.itemId)
-        .filter((t) => t.mode === "maximize")
-        .sort((a, b) => {
-            if (a.priority > b.priority) return 1;
-            if (a.priority < b.priority) return -1;
-            return 0;
-        })
-        .map(({ itemId }) => ({ type: "maximizeItem", itemId: itemId! }));
-    solverObjectives.push({ type: "minimizeResourceUsage" });
-    return solverObjectives;
+function compileSolverMaximizeTargets(_gameData: GameData, store: PlannerState): Record<string, SolverMaximizeTarget> {
+    const solverMaximizeTargets: Record<string, SolverMaximizeTarget> = {};
+    for (const target of store.production.targets) {
+        if (!target.itemId) continue;
+        if (target.mode === "maximize") {
+            const existing = solverMaximizeTargets[target.itemId];
+            if (existing) {
+                if (target.priority < existing.priority) {
+                    existing.priority = target.priority;
+                }
+            }
+            else {
+                solverMaximizeTargets[target.itemId] = {
+                    priority: target.priority,
+                };
+            }
+        }
+    }
+    return solverMaximizeTargets;
+}
+
+function compileSolverObjective(_gameData: GameData, _store: PlannerState): SolverObjective {
+    return "minimizeResourceUsage";
 }
 
 function cleanSolverProblem(solverProblem: SolverProblem): SolverProblem {
@@ -229,23 +238,16 @@ function cleanSolverProblem(solverProblem: SolverProblem): SolverProblem {
 }
 
 function cleanObjectives(solverProblem: SolverProblem): void {
-    for (const objective of solverProblem.objectives) {
-        if (objective.type === "maximizeItem") {
-            delete solverProblem.targets[objective.itemId];
-        }
-    }
-    if (Object.keys(solverProblem.targets).length === 0) {
-        solverProblem.objectives = solverProblem.objectives.filter((o) => o.type === "maximizeItem");
+    for (const itemId of Object.keys(solverProblem.maximizeTargets)) {
+        delete solverProblem.targets[itemId];
     }
 }
 
 function cullUnreachable(solverProblem: SolverProblem): void {
-    const targetItemIds = Object.keys(solverProblem.targets);
-    for (const objective of solverProblem.objectives) {
-        if (objective.type === "maximizeItem") {
-            targetItemIds.push(objective.itemId);
-        }
-    }
+    const targetItemIds = [
+        ...Object.keys(solverProblem.targets),
+        ...Object.keys(solverProblem.maximizeTargets)
+    ];
 
     const reachableRecipes = new Set<string>();
     const reachableItems = new Set<string>();

@@ -1,4 +1,4 @@
-import type { SolverSubproblem } from "./problem";
+import type { SolverProblem } from "./problem";
 
 export interface LinearTerm {
     variable: string;
@@ -29,20 +29,31 @@ export interface LinearModel {
     objective: LinearObjective;
 }
 
-export function compileLinearModel(problem: SolverSubproblem): LinearModel {
+export function compileLinearModel(problem: SolverProblem, maximizeTarget: string | null): LinearModel {
     return {
-        bounds: compileBounds(problem),
+        bounds: compileBounds(problem, maximizeTarget),
         constraints: compileConstraints(problem),
-        objective: compileObjective(problem),
+        objective: compileObjective(problem, maximizeTarget),
     };
 }
 
-function compileBounds(problem: SolverSubproblem): LinearBound[] {
+function compileBounds(problem: SolverProblem, maximizeTarget: string | null): LinearBound[] {
     const bounds: LinearBound[] = [];
     for (const [itemId, _item] of Object.entries(problem.items)) {
+        let bound = 0;
+        const input = problem.inputs[itemId];
+        if (input) {
+            bound -= input.rate;
+        }
+        if (maximizeTarget === null) {
+            const target = problem.targets[itemId];
+            if (target) {
+                bound += target.rate;
+            }
+        }
         bounds.push({
             variable: itemId,
-            lowerBound: 0,
+            lowerBound: bound,
         });
     }
     for (const [recipeId, _recipe] of Object.entries(problem.recipes)) {
@@ -54,24 +65,24 @@ function compileBounds(problem: SolverSubproblem): LinearBound[] {
     return bounds;
 }
 
-function compileConstraints(problem: SolverSubproblem): LinearConstraint[] {
+function constraintId(baseId: string): string {
+    return `${baseId}_CONSTRAINT`;
+}
+
+function compileConstraints(problem: SolverProblem): LinearConstraint[] {
     const constraints: LinearConstraint[] = [];
     for (const [itemId, item] of Object.entries(problem.items)) {
         const constraint: LinearConstraint = {
-            id: itemId,
+            id: constraintId(itemId),
             coefficients: [],
             lowerBound: 0,
+            upperBound: 0,
         };
 
-        const input = problem.inputs[itemId];
-        if (input) {
-            constraint.lowerBound! -= input.rate;
-        }
-
-        const target = problem.targets[itemId];
-        if (target) {
-            constraint.lowerBound! += target.rate;
-        }
+        constraint.coefficients.push({
+            variable: itemId,
+            coefficient: -1,
+        });
 
         for (const recipeId of item.usedInRecipes) {
             const usedIn = problem.recipes[recipeId]?.ingredients.find((i) => i.itemId === itemId);
@@ -98,28 +109,25 @@ function compileConstraints(problem: SolverSubproblem): LinearConstraint[] {
     return constraints;
 }
 
-function compileObjective(problem: SolverSubproblem): LinearObjective {
-    if (problem.currentObjective.type === "maximizeItem") {
-        return {
-            direction: "maximize",
-            coefficients: [{
-                variable: problem.currentObjective.itemId,
-                coefficient: 1,
-            }]
-        };
-    }
-
+function compileObjective(problem: SolverProblem, maximizeTarget: string | null): LinearObjective {
     const objective: LinearObjective = {
         direction: "minimize",
         coefficients: []
     };
 
+    if (maximizeTarget) {
+        objective.coefficients.push({
+            variable: maximizeTarget,
+            coefficient: -1000
+        });
+    }
+
     const resourceMultiplier =
-        problem.currentObjective.type === "minimizeResourceUsage" ? 1000 : 1;
+        problem.objective === "minimizeResourceUsage" ? 1 : 0.001;
     const powerMultiplier =
-        problem.currentObjective.type === "minimizePowerUsage" ? 1000 : 1;
+        problem.objective === "minimizePowerUsage" ? 1 : 0.001;
     const areaMultiplier =
-        problem.currentObjective.type === "minimizeFactoryArea" ? 1000 : 1;
+        problem.objective === "minimizeFactoryArea" ? 1 : 0.001;
 
     for (const [recipeId, recipe] of Object.entries(problem.recipes)) {
         let resourcePenalty = 0;
