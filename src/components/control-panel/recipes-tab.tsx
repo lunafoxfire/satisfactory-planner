@@ -3,7 +3,7 @@ import { CheckboxInput } from "#components/checkbox-input";
 import { SectionCard } from "#components/section-card";
 import { TextInput } from "#components/text-input";
 import { useGameData } from "#hooks/use-game-data";
-import { usePlannerStore } from "#lib/store/store";
+import { usePlannerStore } from "#lib/store/planner/store";
 import { Button } from "#components/ui/button";
 
 export function RecipesTab() {

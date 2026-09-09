@@ -1,6 +1,6 @@
 import loadHighs, { type HighsModelStatus, type HighsSolution } from "highs";
 import type { GameData } from "#data/schema";
-import type { PlannerState } from "#lib/store/store";
+import type { PlannerState } from "#lib/store/planner/store";
 import { compileLinearModel } from "./linear-model";
 import { getLP } from "./lp";
 import { compileSolverProblem, type SolverProblem } from "./problem";
@@ -27,10 +27,10 @@ export type SolveResult =
         recipes: Record<string, number>;
         inputs: Record<string, number>;
         outputs: Record<string, number>;
+        targets: Set<string>;
     };
 
 export async function solve(gameData: GameData, store: PlannerState): Promise<SolveResult> {
-    console.clear();
     const highs = (await highsPromise);
 
     const problem = compileSolverProblem(gameData, store);
@@ -42,7 +42,7 @@ export async function solve(gameData: GameData, store: PlannerState): Promise<So
         const lp = getLP(model);
 
         const lpResult = highs.solve(lp, { output_flag: false });
-        const subresult = parseLPResult(lpResult, gameData);
+        const subresult = parseLPResult(lpResult, problem, gameData);
 
         updateProblem(problem, subresult);
         result = mergeResults(result, subresult);
@@ -104,7 +104,7 @@ function mapLPStatus(lpStatus: HighsModelStatus): SolveStatus {
     }
 }
 
-function parseLPResult(lpResult: HighsSolution, gameData: GameData): SolveResult {
+function parseLPResult(lpResult: HighsSolution, problem: SolverProblem, gameData: GameData): SolveResult {
     const status = mapLPStatus(lpResult.Status);
     if (status !== "success") {
         return {
@@ -117,6 +117,7 @@ function parseLPResult(lpResult: HighsSolution, gameData: GameData): SolveResult
         recipes: {},
         inputs: {},
         outputs: {},
+        targets: new Set(),
     };
 
     for (const [Name, { Primal }] of Object.entries(lpResult.Columns)) {
@@ -132,6 +133,10 @@ function parseLPResult(lpResult: HighsSolution, gameData: GameData): SolveResult
             else if (Primal > 0) {
                 result.outputs[Name] = Primal;
             }
+        }
+
+        if (problem.targets[Name] || problem.maximizeTargets[Name]) {
+            result.targets.add(Name);
         }
     }
 
@@ -184,6 +189,9 @@ function mergeResults(result: SolveResult, subresult: SolveResult): SolveResult 
         else {
             result.outputs[outputId] = count;
         }
+    }
+    for (const targetId of subresult.targets) {
+        result.targets.add(targetId);
     }
 
     return result;

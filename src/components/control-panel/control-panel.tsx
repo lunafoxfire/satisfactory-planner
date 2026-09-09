@@ -1,10 +1,5 @@
 import { useState } from "react";
-import {
-    Tabs,
-    TabsContent,
-    TabsList,
-    TabsTrigger,
-} from "#components/ui/tabs";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "#components/ui/tabs";
 import { ProductionTab } from "./production-tab";
 import { InputsTab } from "./inputs-tab";
 import { RecipesTab } from "./recipes-tab";
@@ -12,12 +7,14 @@ import { ScrollArea } from "#components/ui/scroll-area";
 import { Button } from "#components/ui/button";
 import { solve } from "#lib/solver/solver";
 import { useGameData } from "#hooks/use-game-data";
-import { usePlannerStore } from "#lib/store/store";
+import { usePlannerStore } from "#lib/store/planner/store";
+import { useSolverStore } from "#lib/store/solver/store";
 
 export function ControlPanel() {
     const [tab, setTab] = useState("production");
     const gameData = useGameData();
     const plannerStore = usePlannerStore((state) => state);
+    const setResult = useSolverStore((state) => state.setResult);
 
     return (
         <aside className="absolute inset-y-0 left-0 z-20 flex flex-col w-100 min-h-0 border-r bg-background pb-14">
@@ -25,7 +22,7 @@ export function ControlPanel() {
                 <h2 className="text-md font-semibold">// Control Panel</h2>
             </header>
             <Button
-                onClick={() => { solve(gameData, plannerStore); }}
+                onClick={async () => { setResult(await solve(gameData, plannerStore)); }}
             >
                 Solve
             </Button>

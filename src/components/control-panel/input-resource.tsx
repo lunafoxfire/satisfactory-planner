@@ -1,7 +1,7 @@
 import { CheckboxInput } from "#components/checkbox-input";
 import { SliderInput } from "#components/slider-input";
 import { useGameData } from "#hooks/use-game-data";
-import { usePlannerStore } from "#lib/store/store";
+import { usePlannerStore } from "#lib/store/planner/store";
 
 interface InputResourceProps {
     itemId: string;

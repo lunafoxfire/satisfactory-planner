@@ -1,4 +1,4 @@
-import { TempDebugInfo } from "#components/production-graph/temp-debug-info";
+import { TempDebugInfo } from "#components/temp-debug-info";
 import { SectionCard } from "#components/section-card";
 
 export function StatisticsTab() {

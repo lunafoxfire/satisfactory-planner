@@ -1,6 +1,6 @@
 import { Trash2 } from "lucide-react";
 import { Button } from "#components/ui/button";
-import { usePlannerStore } from "#lib/store/store";
+import { usePlannerStore } from "#lib/store/planner/store";
 import { Dropdown, type DropdownItem } from "#components/dropdown";
 import { TextInput } from "#components/text-input";
 

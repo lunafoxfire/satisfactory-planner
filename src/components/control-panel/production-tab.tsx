@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import { Plus } from "lucide-react";
 import { Button } from "#components/ui/button";
-import { usePlannerStore } from "#lib/store/store";
+import { usePlannerStore } from "#lib/store/planner/store";
 import { useGameData } from "#hooks/use-game-data";
 import { SectionCard } from "#components/section-card";
 import type { DropdownItem } from "#components/dropdown";

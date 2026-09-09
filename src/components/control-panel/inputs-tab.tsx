@@ -2,7 +2,7 @@ import type { DropdownItem } from "#components/dropdown";
 import { SectionCard } from "#components/section-card";
 import { Button } from "#components/ui/button";
 import { useGameData } from "#hooks/use-game-data";
-import { usePlannerStore } from "#lib/store/store";
+import { usePlannerStore } from "#lib/store/planner/store";
 import { Plus } from "lucide-react";
 import { InputItem } from "./input-item";
 import { InputResource } from "./input-resource";

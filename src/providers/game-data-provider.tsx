@@ -6,7 +6,7 @@ import {
 } from "react";
 import { getGameData } from "#api/game-data";
 import type { GameData } from "#data/schema";
-import { usePlannerStore } from "#lib/store/store";
+import { usePlannerStore } from "#lib/store/planner/store";
 
 interface GameDataContextValue {
     gameData: GameData;

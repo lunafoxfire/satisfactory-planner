@@ -1,5 +1,5 @@
 import type { GameData } from "#data/schema";
-import type { PlannerState } from "#lib/store/store";
+import type { PlannerState } from "#lib/store/planner/store";
 
 export interface SolverItem {
     usedInRecipes: string[];
