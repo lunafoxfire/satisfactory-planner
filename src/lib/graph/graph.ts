@@ -1,30 +1,37 @@
 import type { GameData } from "#data/schema";
 import type { SolveResult } from "#lib/solver/solver";
 
-export type ItemNodeType =
+export type ItemNodeSubtype =
     | "targetProduct"
     | "sideProduct"
     | "inputItem"
     | "resource"
     | "handGathered";
 
-export type RecipeNodeType = "recipe";
+export type RecipeNodeSubtype =
+    | "recipe"
+    | "nuclear";
 
-export type NodeType = ItemNodeType | RecipeNodeType;
+export type NodeType = ItemNodeSubtype | RecipeNodeSubtype;
 
-export type Node =
-    | {
-        type: ItemNodeType;
-        id: string;
-        name: string;
-        rate: number;
-    }
-    | {
-        type: RecipeNodeType;
-        id: string;
-        name: string;
-        multiplier: number;
-    };
+export interface ItemNode {
+    type: "item",
+    subtype: ItemNodeSubtype;
+    id: string;
+    name: string;
+    rate: number;
+}
+
+export interface RecipeNode {
+    type: "recipe",
+    subtype: RecipeNodeSubtype;
+    id: string;
+    name: string;
+    buildingName: string;
+    multiplier: number;
+}
+
+export type Node = ItemNode | RecipeNode;
 
 export interface Edge {
     from: string;
@@ -61,7 +68,8 @@ export function buildGraph(gameData: GameData, solveResult: SolveResult): Graph 
     // NODES
     for (const [itemId, inputRate] of Object.entries(solveResult.inputs)) {
         graph.nodes.push({
-            type: classifyInput(gameData, itemId),
+            type: "item",
+            subtype: classifyInput(gameData, itemId),
             id: itemId,
             name: gameData.items[itemId]?.name ?? "<UNKNOWN>",
             rate: inputRate,
@@ -70,7 +78,8 @@ export function buildGraph(gameData: GameData, solveResult: SolveResult): Graph 
 
     for (const [itemId, outputRate] of Object.entries(solveResult.outputs)) {
         graph.nodes.push({
-            type: classifyOutput(solveResult.targets, itemId),
+            type: "item",
+            subtype: classifyOutput(solveResult.targets, itemId),
             id: itemId,
             name: gameData.items[itemId]?.name ?? "<UNKNOWN>",
             rate: outputRate,
@@ -78,10 +87,14 @@ export function buildGraph(gameData: GameData, solveResult: SolveResult): Graph 
     }
 
     for (const [recipeId, recipeMultiplier] of Object.entries(solveResult.recipes)) {
+        const recipe = gameData.recipes[recipeId];
+        const building = recipe ? gameData.buildings[recipe.producedIn] : undefined;
         graph.nodes.push({
             type: "recipe",
+            subtype: classifyRecipe(recipeId),
             id: recipeId,
-            name: gameData.recipes[recipeId]?.name.replace("Alternate: ", "") ?? "<UNKNOWN>",
+            name: recipe?.name.replace("Alternate: ", "") ?? "<UNKNOWN>",
+            buildingName: building?.name ?? "<UNKNOWN>",
             multiplier: recipeMultiplier,
         });
     }
@@ -124,7 +137,7 @@ export function buildGraph(gameData: GameData, solveResult: SolveResult): Graph 
     return graph;
 }
 
-function classifyInput(gameData: GameData, itemId: string): ItemNodeType {
+function classifyInput(gameData: GameData, itemId: string): ItemNodeSubtype {
     if (gameData.resources[itemId]) {
         return "resource";
     }
@@ -134,11 +147,22 @@ function classifyInput(gameData: GameData, itemId: string): ItemNodeType {
     return "inputItem";
 }
 
-function classifyOutput(targets: Set<string>, itemId: string): ItemNodeType {
+function classifyOutput(targets: Set<string>, itemId: string): ItemNodeSubtype {
     if (targets.has(itemId)) {
         return "targetProduct";
     }
     return "sideProduct";
+}
+
+function classifyRecipe(itemId: string): RecipeNodeSubtype {
+    if ([
+        "Recipe_NuclearPower_C",
+        "Recipe_PlutoniumPower_C",
+        "Recipe_FicsoniumPower_C",
+    ].includes(itemId)) {
+        return "nuclear";
+    }
+    return "recipe";
 }
 
 function newItemFlowEntry() {

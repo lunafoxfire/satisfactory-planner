@@ -1,119 +1,46 @@
 import { useEffect, useRef } from "react";
-import cytoscape, { type Core, type ElementDefinition, type StylesheetJson } from "cytoscape";
-import type { Graph, Node } from "#lib/graph/graph";
-import { cn } from "#lib/utils";
+import cytoscape, { type Core, type ElementDefinition } from "cytoscape";
+import type { Edge, Graph, ItemNode, Node, RecipeNode } from "#lib/graph/graph";
+import { cn, truncateFloat } from "#lib/utils";
+import { graphLayout } from "./production-graph-layout";
+import { graphStyles } from "./production-graph-styles";
 
-export interface ProductionGraphProps {
-    graph: Graph;
-    onNodeSelect?: (node: Node | null) => void;
-    className?: string;
+function getNodeLabel(node: Node): string {
+    if (node.type === "item") {
+        return getItemNodeLabel(node);
+    }
+    return getRecipeNodeLabel(node);
 }
 
-const layoutOptions: cytoscape.LayoutOptions = {
-    name: "cose",
-    animate: false,
-    fit: true,
-    padding: 50,
-};
+function getItemNodeLabel(node: ItemNode): string {
+    const label = node.name;
+    const amountText = `${truncateFloat(node.rate)} / min`;
+    return `${label}\n${amountText}`;
+}
 
-const styles: StylesheetJson = [
-    {
-        selector: "node",
-        style: {
-            label: "data(name)",
-            "text-valign": "center",
-            "text-halign": "center",
-            "text-wrap": "wrap",
-            "text-max-width": "120px",
-            "font-family": "JetBrains Mono",
-            "font-size": 12,
-            color: "#ffffff",
-            "background-color": "#666666",
-            width: 50,
-            height: 50,
-        },
-    },
-    {
-        selector: 'node[type = "recipe"]',
-        style: {
-            shape: "round-rectangle",
-            "background-color": "#444444",
-            width: 100,
-            height: 60,
-        },
-    },
-    {
-        selector: 'node[type = "finalProduct"]',
-        style: {
-            shape: "ellipse",
-        },
-    },
-    {
-        selector: 'node[type = "sideProduct"]',
-        style: {
-            shape: "ellipse",
-        },
-    },
-    {
-        selector: 'node[type = "inputItem"]',
-        style: {
-            shape: "ellipse",
-        },
-    },
-    {
-        selector: 'node[type = "resource"]',
-        style: {
-            shape: "diamond",
-        },
-    },
-    {
-        selector: 'node[type = "handGathered"]',
-        style: {
-            shape: "ellipse",
-        },
-    },
-    {
-        selector: "node:selected",
-        style: {
-            "border-width": 3,
-            "border-color": "#ffffff",
-        },
-    },
-    {
-        selector: "edge",
-        style: {
-            width: 2,
-            "line-color": "#777777",
-            "target-arrow-color": "#777777",
-            "target-arrow-shape": "triangle",
-            "curve-style": "bezier",
-            label: "data(rate)",
-            "font-family": "JetBrains Mono",
-            "font-size": 10,
-            color: "#aaaaaa",
-            "text-background-color": "#111111",
-            "text-background-opacity": 1,
-            "text-background-padding": "2px",
-        },
-    },
-    {
-        selector: "edge:selected",
-        style: {
-            width: 3,
-            "line-color": "#ffffff",
-            "target-arrow-color": "#ffffff",
-        },
-    },
-];
+function getRecipeNodeLabel(node: RecipeNode): string {
+    const label = node.name;
+    const amountText = `${truncateFloat(node.multiplier)}x ${node.buildingName}`;
+    return `${label}\n${amountText}`;
+}
+
+function getEdgeLabel(edge: Edge): string {
+    const label = edge.itemName;
+    const amountText = `${truncateFloat(edge.rate)} / min`;
+    return `${label}\n${amountText}`;
+}
 
 function toCytoscapeElements(graph: Graph): ElementDefinition[] {
     const nodes: ElementDefinition[] = graph.nodes.map((node) => ({
         data: {
             id: node.id,
             type: node.type,
+            subtype: node.subtype,
             name: node.name,
             rate: "rate" in node ? node.rate : undefined,
             multiplier: "multiplier" in node ? node.multiplier : undefined,
+            buildingName: "buildingName" in node ? node.buildingName : undefined,
+            label: getNodeLabel(node),
         },
     }));
 
@@ -125,6 +52,7 @@ function toCytoscapeElements(graph: Graph): ElementDefinition[] {
             itemId: edge.itemId,
             itemName: edge.itemName,
             rate: edge.rate,
+            label: getEdgeLabel(edge),
         },
     }));
 
@@ -137,18 +65,67 @@ function getNodeFromCytoscapeData(node: cytoscape.NodeSingular): Node {
     if (data.type === "recipe") {
         return {
             type: "recipe",
+            subtype: data.subtype,
             id: data.id,
             name: data.name,
             multiplier: data.multiplier,
+            buildingName: data.buildingName,
         };
     }
 
     return {
-        type: data.type,
+        type: "item",
+        subtype: data.subtype,
         id: data.id,
         name: data.name,
         rate: data.rate,
     };
+}
+
+function setCyListeners(cy: cytoscape.Core) {
+    cy.on('select', 'node', function (e) {
+        e.target.addClass('selected');
+        e.target.outgoers('edge').addClass('selected').addClass('selected-outgoing');
+        e.target.incomers('edge').addClass('selected').addClass('selected-incoming');
+    });
+
+    cy.on('unselect', 'node', function (e) {
+        e.target.removeClass('selected');
+        e.target.outgoers('edge').removeClass('selected').removeClass('selected-outgoing');
+        e.target.incomers('edge').removeClass('selected').removeClass('selected-incoming');
+    });
+
+    cy.on('grab', 'node', function (e) {
+        e.target.addClass('grabbed');
+        e.target.outgoers('edge').addClass('grabbed').addClass('grabbed-outgoing');
+        e.target.incomers('edge').addClass('grabbed').addClass('grabbed-incoming');
+    });
+
+    cy.on('free', 'node', function (e) {
+        e.target.removeClass('grabbed');
+        e.target.outgoers('edge').removeClass('grabbed').removeClass('grabbed-outgoing');
+        e.target.incomers('edge').removeClass('grabbed').removeClass('grabbed-incoming');
+    });
+
+    // cy.on('mouseover', 'node', function (e) {
+    //     const nodeId = e.target.id() as string;
+    //     if (popperRef.current?.nodeId === nodeId) return;
+    //     deactivatePopper(cy);
+    //     activatePopper(cy, e.target);
+    // });
+
+    // cy.on('mouseout', 'node', function (e) {
+    //     const nodeId = e.target.id() as string;
+    //     if (popperRef.current?.nodeId === nodeId) {
+    //         deactivatePopper(cy);
+    //     }
+    // });
+}
+
+export interface ProductionGraphProps {
+    graph: Graph;
+    onNodeSelect?: (node: Node | null) => void;
+    className?: string;
 }
 
 export function ProductionGraph({
@@ -172,8 +149,8 @@ export function ProductionGraph({
         const cy = cytoscape({
             container: containerRef.current,
             elements: toCytoscapeElements(graphRef.current),
-            style: styles,
-            layout: layoutOptions,
+            style: graphStyles,
+            layout: graphLayout,
             minZoom: 0.1,
             maxZoom: 4,
             wheelSensitivity: 1.0,
@@ -183,6 +160,7 @@ export function ProductionGraph({
         });
 
         cyRef.current = cy;
+        setCyListeners(cyRef.current);
 
         cy.on("tap", "node", (event) => {
             const node = event.target;
@@ -228,7 +206,7 @@ export function ProductionGraph({
             }
         }
 
-        cy.layout(layoutOptions).run();
+        cy.layout(graphLayout).run();
     }, [graph]);
 
     return (
