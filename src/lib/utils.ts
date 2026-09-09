@@ -1,5 +1,5 @@
 export { cn } from "cn";
 
-export function truncateFloat(n: number, places: number = 4) {
+export function truncateFloat(n: number, places: number = 2): string {
     return n.toFixed(places).replace(/\.?0+$/, '');
 }
