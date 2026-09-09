@@ -100,6 +100,8 @@ export function Dropdown({
                         {clearable && selectedItem
                             ? (
                                 <Button
+                                    render={<span />}
+                                    nativeButton={false}
                                     variant="ghost"
                                     size="icon"
                                     aria-label="Clear selection"

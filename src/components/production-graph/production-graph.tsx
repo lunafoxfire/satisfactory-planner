@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import cytoscape, { type Core, type ElementDefinition, type StylesheetJson } from "cytoscape";
 import type { Graph, Node } from "#lib/graph/graph";
+import { cn } from "#lib/utils";
 
 export interface ProductionGraphProps {
     graph: Graph;
@@ -175,7 +176,7 @@ export function ProductionGraph({
             layout: layoutOptions,
             minZoom: 0.1,
             maxZoom: 4,
-            wheelSensitivity: 0.2,
+            wheelSensitivity: 1.0,
             boxSelectionEnabled: true,
             autoungrabify: false,
             autounselectify: false,
@@ -233,7 +234,10 @@ export function ProductionGraph({
     return (
         <div
             ref={containerRef}
-            className={className}
+            className={cn(
+                "w-full h-full",
+                className
+            )}
         />
     );
 }
