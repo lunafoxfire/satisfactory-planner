@@ -5,17 +5,9 @@ import { ProductionTab } from "./production-tab";
 import { InputsTab } from "./inputs-tab";
 import { RecipesTab } from "./recipes-tab";
 import { ScrollArea } from "#components/ui/scroll-area";
-import { Button } from "#components/ui/button";
-import { solve } from "#lib/solver/solver";
-import { useGameData } from "#hooks/use-game-data";
-import { usePlannerStore } from "#lib/store/planner/store";
-import { useSolverStore } from "#lib/store/solver/store";
 import { cn } from "#lib/utils";
 
 export function ControlPanel() {
-    const gameData = useGameData();
-    const plannerStore = usePlannerStore((state) => state);
-    const setResult = useSolverStore((state) => state.setResult);
     const [tab, setTab] = useState("production");
     const [open, setOpen] = useState(true);
 
@@ -30,11 +22,6 @@ export function ControlPanel() {
             <header className="flex h-10 shrink-0 items-center border-b bg-muted p-2">
                 <h2 className="text-md font-semibold">// Control Panel</h2>
             </header>
-            <Button
-                onClick={async () => { setResult(await solve(gameData, plannerStore)); }}
-            >
-                Solve
-            </Button>
             <Tabs
                 value={tab}
                 onValueChange={setTab}
