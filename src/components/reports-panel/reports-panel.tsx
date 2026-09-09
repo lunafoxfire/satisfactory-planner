@@ -32,8 +32,8 @@ export function ReportsPanel() {
                 className="flex min-h-0 flex-1 flex-col"
             >
                 <TabsList className="grid w-auto shrink-0 grid-cols-3 -mb-1.5" variant="line">
-                    <TabsTrigger value="statistics">Production</TabsTrigger>
-                    <TabsTrigger value="buildings">Inputs</TabsTrigger>
+                    <TabsTrigger value="statistics">Statistics</TabsTrigger>
+                    <TabsTrigger value="buildings">Buildings</TabsTrigger>
                 </TabsList>
 
                 <TabsContent
