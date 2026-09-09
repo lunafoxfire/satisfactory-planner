@@ -11,11 +11,20 @@ import { ProductionTarget } from "./production-target";
 export function ProductionTab() {
     const gameData = useGameData();
 
+    const ficsmasEnabled = usePlannerStore((state) => state.recipes.ficsmasEnabled);
+
     const productionTargets = usePlannerStore((state) => state.production.targets);
     const addProductionTarget = usePlannerStore((state) => state.addProductionTarget);
 
     const producableItems: DropdownItem[] = useMemo(() => Object.entries(gameData.items)
-        .filter(([_, item]) => item.producedFromRecipes.length > 0)
+        .filter(([_, item]) =>
+            !(
+                item.isResource
+                || item.isHandGathered
+                || (item.isFicsmas && !ficsmasEnabled)
+            )
+            && (item.producedFromRecipes.length > 0)
+        )
         .map(([itemId, item]) => ({
             value: itemId,
             label: item.name,
