@@ -4,13 +4,11 @@ import { ProductionGraphContainer } from "#components/production-graph/productio
 
 export function AppWorkspace() {
     return (
-        <div className="relative h-svh overflow-hidden">
+        <div className="relative h-full overflow-x-clip">
             <main className="h-full min-w-0">
                 <ProductionGraphContainer />
             </main>
-
             <ControlPanel />
-
             <ReportsPanel />
         </div>
     );

@@ -4,14 +4,14 @@ import { AppWorkspace } from "./app-workspace";
 
 export function AppShell() {
     return (
-        <div className="flex h-svh flex-col overflow-hidden">
-            <AppHeader />
+        <div className="flex h-svh flex-col">
+            <GameDataProvider>
+                <AppHeader />
 
-            <div className="min-h-0 flex-1">
-                <GameDataProvider>
+                <div className="min-h-0 flex-1">
                     <AppWorkspace />
-                </GameDataProvider>
-            </div>
+                </div>
+            </GameDataProvider>
         </div>
     );
 }
