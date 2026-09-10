@@ -140,7 +140,7 @@ function getRecipes(
 
         recipes[recipeKey] = {
             slug: recipeData.slug.replaceAll("-", "_"),
-            name: recipeData.name,
+            name: recipeData.name.replace("Alternate: ", ""),
             isAlternate: recipeData.isAlternate,
             isConversion,
             ingredients,

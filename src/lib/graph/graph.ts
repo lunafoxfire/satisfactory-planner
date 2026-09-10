@@ -93,7 +93,7 @@ export function buildGraph(gameData: GameData, solveResult: SolveResult): Graph 
             type: "recipe",
             subtype: classifyRecipe(recipeId),
             id: recipeId,
-            name: recipe?.name.replace("Alternate: ", "") ?? "<UNKNOWN>",
+            name: recipe?.name ?? "<UNKNOWN>",
             buildingName: building?.name ?? "<UNKNOWN>",
             multiplier: recipeMultiplier,
         });

@@ -28,7 +28,7 @@ export function RecipesTab() {
         return Object.entries(enabledRecipes)
             .map(([recipeId, enabled]) => {
                 const recipe = gameData.recipes[recipeId];
-                const name = recipe.name.replace("Alternate: ", "");
+                const name = recipe.name;
 
                 return {
                     recipeId,
@@ -140,7 +140,7 @@ export function RecipesTab() {
                             {alternateRecipes.map((recipe) => (
                                 <CheckboxInput
                                     key={recipe.recipeId}
-                                    label={recipe.name.replace("Alternate: ", "")}
+                                    label={recipe.name}
                                     checked={recipe.enabled}
                                     onCheckedChange={(checked) => {
                                         setRecipeEnabled(recipe.recipeId, checked);

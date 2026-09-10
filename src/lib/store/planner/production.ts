@@ -34,12 +34,8 @@ export interface ProductionActions {
     addProductionTarget: () => void;
     removeProductionTarget: (id: string) => void;
     setProductionTargetItem: (id: string, itemId: string | null) => void;
-    setProductionTargetMode: (
-        id: string,
-        mode: ProductionTarget["mode"],
-    ) => void;
+    setProductionTargetMode: (id: string, mode: ProductionTarget["mode"], recipeId: string | null) => void;
     setProductionTargetRate: (id: string, rate: number) => void;
-    setProductionTargetRecipe: (id: string, recipeId: string | null) => void;
     setProductionTargetMultiplier: (id: string, multiplier: number) => void;
     setProductionTargetPriority: (id: string, priority: number) => void;
 
@@ -88,12 +84,12 @@ export const createProductionSlice: StateCreator<PlannerStore, [], [], Productio
                 production: {
                     ...state.production,
                     targets: state.production.targets.map((target) =>
-                        target.id === id ? { ...target, itemId } : target,
+                        target.id === id ? { ...target, itemId, mode: "itemsPerMinute", rate: 10 } : target,
                     ),
                 },
             })),
 
-        setProductionTargetMode: (id, mode) =>
+        setProductionTargetMode: (id, mode, recipeId) =>
             set((state) => ({
                 production: {
                     ...state.production,
@@ -116,7 +112,7 @@ export const createProductionSlice: StateCreator<PlannerStore, [], [], Productio
                                     id: target.id,
                                     itemId: target.itemId,
                                     mode,
-                                    recipeId: null,
+                                    recipeId: recipeId,
                                     multiplier: 1,
                                 };
 
@@ -139,18 +135,6 @@ export const createProductionSlice: StateCreator<PlannerStore, [], [], Productio
                     targets: state.production.targets.map((target) =>
                         target.id === id && target.mode === "itemsPerMinute"
                             ? { ...target, rate }
-                            : target,
-                    ),
-                },
-            })),
-
-        setProductionTargetRecipe: (id, recipeId) =>
-            set((state) => ({
-                production: {
-                    ...state.production,
-                    targets: state.production.targets.map((target) =>
-                        target.id === id && target.mode === "fromRecipe"
-                            ? { ...target, recipeId }
                             : target,
                     ),
                 },

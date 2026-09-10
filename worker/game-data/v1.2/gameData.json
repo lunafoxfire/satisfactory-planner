@@ -3414,7 +3414,7 @@
     },
     "Recipe_Alternate_Coal_1_C": {
       "slug": "alternate_charcoal_recipe",
-      "name": "Alternate: Charcoal",
+      "name": "Charcoal",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -3434,7 +3434,7 @@
     },
     "Recipe_Alternate_Coal_2_C": {
       "slug": "alternate_biocoal_recipe",
-      "name": "Alternate: Biocoal",
+      "name": "Biocoal",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -3454,7 +3454,7 @@
     },
     "Recipe_Alternate_EnrichedCoal_C": {
       "slug": "alternate_compacted_coal_recipe",
-      "name": "Alternate: Compacted Coal",
+      "name": "Compacted Coal",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -4494,7 +4494,7 @@
     },
     "Recipe_Alternate_PolyesterFabric_C": {
       "slug": "alternate_polyester_fabric_recipe",
-      "name": "Alternate: Polyester Fabric",
+      "name": "Polyester Fabric",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -4970,7 +4970,7 @@
     },
     "Recipe_Alternate_Wire_2_C": {
       "slug": "alternate_caterium_wire_recipe",
-      "name": "Alternate: Caterium Wire",
+      "name": "Caterium Wire",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -4990,7 +4990,7 @@
     },
     "Recipe_Alternate_Wire_1_C": {
       "slug": "alternate_iron_wire_recipe",
-      "name": "Alternate: Iron Wire",
+      "name": "Iron Wire",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -5010,7 +5010,7 @@
     },
     "Recipe_Alternate_UraniumCell_1_C": {
       "slug": "alternate_infused_uranium_cell_recipe",
-      "name": "Alternate: Infused Uranium Cell",
+      "name": "Infused Uranium Cell",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -5042,7 +5042,7 @@
     },
     "Recipe_Alternate_TurboMotor_1_C": {
       "slug": "alternate_turbo_electric_motor_recipe",
-      "name": "Alternate: Turbo Electric Motor",
+      "name": "Turbo Electric Motor",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -5074,7 +5074,7 @@
     },
     "Recipe_Alternate_Stator_C": {
       "slug": "alternate_quickwire_stator_recipe",
-      "name": "Alternate: Quickwire Stator",
+      "name": "Quickwire Stator",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -5098,7 +5098,7 @@
     },
     "Recipe_Alternate_Silica_C": {
       "slug": "alternate_cheap_silica_recipe",
-      "name": "Alternate: Cheap Silica",
+      "name": "Cheap Silica",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -5122,7 +5122,7 @@
     },
     "Recipe_Alternate_Screw_2_C": {
       "slug": "alternate_steel_screws_recipe",
-      "name": "Alternate: Steel Screws",
+      "name": "Steel Screws",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -5142,7 +5142,7 @@
     },
     "Recipe_Alternate_Screw_C": {
       "slug": "alternate_cast_screws_recipe",
-      "name": "Alternate: Cast Screws",
+      "name": "Cast Screws",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -5162,7 +5162,7 @@
     },
     "Recipe_Alternate_Rotor_C": {
       "slug": "alternate_steel_rotor_recipe",
-      "name": "Alternate: Steel Rotor",
+      "name": "Steel Rotor",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -5186,7 +5186,7 @@
     },
     "Recipe_Alternate_EncasedIndustrialBeam_C": {
       "slug": "alternate_encased_industrial_pipe_recipe",
-      "name": "Alternate: Encased Industrial Pipe",
+      "name": "Encased Industrial Pipe",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -5210,7 +5210,7 @@
     },
     "Recipe_Alternate_ReinforcedIronPlate_2_C": {
       "slug": "alternate_stitched_iron_plate_recipe",
-      "name": "Alternate: Stitched Iron Plate",
+      "name": "Stitched Iron Plate",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -5234,7 +5234,7 @@
     },
     "Recipe_Alternate_ReinforcedIronPlate_1_C": {
       "slug": "alternate_bolted_iron_plate_recipe",
-      "name": "Alternate: Bolted Iron Plate",
+      "name": "Bolted Iron Plate",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -5258,7 +5258,7 @@
     },
     "Recipe_Alternate_RadioControlUnit_1_C": {
       "slug": "alternate_radio_connection_unit_recipe",
-      "name": "Alternate: Radio Connection Unit",
+      "name": "Radio Connection Unit",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -5286,7 +5286,7 @@
     },
     "Recipe_Alternate_Quickwire_C": {
       "slug": "alternate_fused_quickwire_recipe",
-      "name": "Alternate: Fused Quickwire",
+      "name": "Fused Quickwire",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -5310,7 +5310,7 @@
     },
     "Recipe_Alternate_Plastic_1_C": {
       "slug": "alternate_recycled_plastic_recipe",
-      "name": "Alternate: Recycled Plastic",
+      "name": "Recycled Plastic",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -5334,7 +5334,7 @@
     },
     "Recipe_Alternate_NuclearFuelRod_1_C": {
       "slug": "alternate_uranium_fuel_unit_recipe",
-      "name": "Alternate: Uranium Fuel Unit",
+      "name": "Uranium Fuel Unit",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -5366,7 +5366,7 @@
     },
     "Recipe_Alternate_Motor_1_C": {
       "slug": "alternate_rigor_motor_recipe",
-      "name": "Alternate: Rigor Motor",
+      "name": "Rigor Motor",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -5394,7 +5394,7 @@
     },
     "Recipe_Alternate_ModularFrame_C": {
       "slug": "alternate_steeled_frame_recipe",
-      "name": "Alternate: Steeled Frame",
+      "name": "Steeled Frame",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -5418,7 +5418,7 @@
     },
     "Recipe_Alternate_IngotSteel_2_C": {
       "slug": "alternate_compacted_steel_ingot_recipe",
-      "name": "Alternate: Compacted Steel Ingot",
+      "name": "Compacted Steel Ingot",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -5442,7 +5442,7 @@
     },
     "Recipe_Alternate_IngotSteel_1_C": {
       "slug": "alternate_solid_steel_ingot_recipe",
-      "name": "Alternate: Solid Steel Ingot",
+      "name": "Solid Steel Ingot",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -5466,7 +5466,7 @@
     },
     "Recipe_Alternate_IngotIron_C": {
       "slug": "alternate_iron_alloy_ingot_recipe",
-      "name": "Alternate: Iron Alloy Ingot",
+      "name": "Iron Alloy Ingot",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -5490,7 +5490,7 @@
     },
     "Recipe_Alternate_HighSpeedConnector_C": {
       "slug": "alternate_silicon_high_speed_connector_recipe",
-      "name": "Alternate: Silicon High-Speed Connector",
+      "name": "Silicon High-Speed Connector",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -5518,7 +5518,7 @@
     },
     "Recipe_Alternate_ModularFrameHeavy_C": {
       "slug": "alternate_heavy_encased_frame_recipe",
-      "name": "Alternate: Heavy Encased Frame",
+      "name": "Heavy Encased Frame",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -5550,7 +5550,7 @@
     },
     "Recipe_Alternate_HeatSink_1_C": {
       "slug": "alternate_heat_exchanger_recipe",
-      "name": "Alternate: Heat Exchanger",
+      "name": "Heat Exchanger",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -5574,7 +5574,7 @@
     },
     "Recipe_Alternate_Gunpowder_1_C": {
       "slug": "alternate_fine_black_powder_recipe",
-      "name": "Alternate: Fine Black Powder",
+      "name": "Fine Black Powder",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -5598,7 +5598,7 @@
     },
     "Recipe_Alternate_ElectromagneticControlRod_1_C": {
       "slug": "alternate_electromagnetic_connection_rod_recipe",
-      "name": "Alternate: Electromagnetic Connection Rod",
+      "name": "Electromagnetic Connection Rod",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -5622,7 +5622,7 @@
     },
     "Recipe_Alternate_CrystalOscillator_C": {
       "slug": "alternate_insulated_crystal_oscillator_recipe",
-      "name": "Alternate: Insulated Crystal Oscillator",
+      "name": "Insulated Crystal Oscillator",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -5650,7 +5650,7 @@
     },
     "Recipe_Alternate_Concrete_C": {
       "slug": "alternate_fine_concrete_recipe",
-      "name": "Alternate: Fine Concrete",
+      "name": "Fine Concrete",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -5674,7 +5674,7 @@
     },
     "Recipe_Alternate_Computer_2_C": {
       "slug": "alternate_crystal_computer_recipe",
-      "name": "Alternate: Crystal Computer",
+      "name": "Crystal Computer",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -5698,7 +5698,7 @@
     },
     "Recipe_Alternate_Computer_1_C": {
       "slug": "alternate_caterium_computer_recipe",
-      "name": "Alternate: Caterium Computer",
+      "name": "Caterium Computer",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -5726,7 +5726,7 @@
     },
     "Recipe_Alternate_CircuitBoard_2_C": {
       "slug": "alternate_caterium_circuit_board_recipe",
-      "name": "Alternate: Caterium Circuit Board",
+      "name": "Caterium Circuit Board",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -5750,7 +5750,7 @@
     },
     "Recipe_Alternate_CircuitBoard_1_C": {
       "slug": "alternate_silicon_circuit_board_recipe",
-      "name": "Alternate: Silicon Circuit Board",
+      "name": "Silicon Circuit Board",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -5774,7 +5774,7 @@
     },
     "Recipe_Alternate_Cable_2_C": {
       "slug": "alternate_quickwire_cable_recipe",
-      "name": "Alternate: Quickwire Cable",
+      "name": "Quickwire Cable",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -5798,7 +5798,7 @@
     },
     "Recipe_Alternate_Cable_1_C": {
       "slug": "alternate_insulated_cable_recipe",
-      "name": "Alternate: Insulated Cable",
+      "name": "Insulated Cable",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -5822,7 +5822,7 @@
     },
     "Recipe_Alternate_Silica_Distilled_C": {
       "slug": "alternate_distilled_silica_recipe",
-      "name": "Alternate: Distilled Silica",
+      "name": "Distilled Silica",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -5854,7 +5854,7 @@
     },
     "Recipe_Alternate_Quartz_Purified_C": {
       "slug": "alternate_quartz_purification_recipe",
-      "name": "Alternate: Quartz Purification",
+      "name": "Quartz Purification",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -5882,7 +5882,7 @@
     },
     "Recipe_Alternate_Quartz_Fused_C": {
       "slug": "alternate_fused_quartz_crystal_recipe",
-      "name": "Alternate: Fused Quartz Crystal",
+      "name": "Fused Quartz Crystal",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -5906,7 +5906,7 @@
     },
     "Recipe_Alternate_IronIngot_Leached_C": {
       "slug": "alternate_leached_iron_ingot_recipe",
-      "name": "Alternate: Leached Iron Ingot",
+      "name": "Leached Iron Ingot",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -5930,7 +5930,7 @@
     },
     "Recipe_Alternate_IronIngot_Basic_C": {
       "slug": "alternate_basic_iron_ingot_recipe",
-      "name": "Alternate: Basic Iron Ingot",
+      "name": "Basic Iron Ingot",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -5954,7 +5954,7 @@
     },
     "Recipe_Alternate_CopperIngot_Tempered_C": {
       "slug": "alternate_tempered_copper_ingot_recipe",
-      "name": "Alternate: Tempered Copper Ingot",
+      "name": "Tempered Copper Ingot",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -5978,7 +5978,7 @@
     },
     "Recipe_Alternate_CopperIngot_Leached_C": {
       "slug": "alternate_leached_copper_ingot_recipe",
-      "name": "Alternate: Leached Copper Ingot",
+      "name": "Leached Copper Ingot",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -6002,7 +6002,7 @@
     },
     "Recipe_Alternate_CateriumIngot_Tempered_C": {
       "slug": "alternate_tempered_caterium_ingot_recipe",
-      "name": "Alternate: Tempered Caterium Ingot",
+      "name": "Tempered Caterium Ingot",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -6026,7 +6026,7 @@
     },
     "Recipe_Alternate_CateriumIngot_Leached_C": {
       "slug": "alternate_leached_caterium_ingot_recipe",
-      "name": "Alternate: Leached Caterium Ingot",
+      "name": "Leached Caterium Ingot",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -6050,7 +6050,7 @@
     },
     "Recipe_Alternate_SteelPipe_Molded_C": {
       "slug": "alternate_molded_steel_pipe_recipe",
-      "name": "Alternate: Molded Steel Pipe",
+      "name": "Molded Steel Pipe",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -6074,7 +6074,7 @@
     },
     "Recipe_Alternate_SteelPipe_Iron_C": {
       "slug": "alternate_iron_pipe_recipe",
-      "name": "Alternate: Iron Pipe",
+      "name": "Iron Pipe",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -6094,7 +6094,7 @@
     },
     "Recipe_Alternate_SteelCastedPlate_C": {
       "slug": "alternate_steel_cast_plate_recipe",
-      "name": "Alternate: Steel Cast Plate",
+      "name": "Steel Cast Plate",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -6118,7 +6118,7 @@
     },
     "Recipe_Alternate_SteelBeam_Molded_C": {
       "slug": "alternate_molded_beam_recipe",
-      "name": "Alternate: Molded Beam",
+      "name": "Molded Beam",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -6142,7 +6142,7 @@
     },
     "Recipe_Alternate_SteelBeam_Aluminum_C": {
       "slug": "alternate_aluminum_beam_recipe",
-      "name": "Alternate: Aluminum Beam",
+      "name": "Aluminum Beam",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -6162,7 +6162,7 @@
     },
     "Recipe_Alternate_AluminumRod_C": {
       "slug": "alternate_aluminum_rod_recipe",
-      "name": "Alternate: Aluminum Rod",
+      "name": "Aluminum Rod",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -6182,7 +6182,7 @@
     },
     "Recipe_Alternate_AILimiter_Plastic_C": {
       "slug": "alternate_plastic_ai_limiter_recipe",
-      "name": "Alternate: Plastic AI Limiter",
+      "name": "Plastic AI Limiter",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -6206,7 +6206,7 @@
     },
     "Recipe_Alternate_TurboPressureMotor_C": {
       "slug": "alternate_turbo_pressure_motor_recipe",
-      "name": "Alternate: Turbo Pressure Motor",
+      "name": "Turbo Pressure Motor",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -6238,7 +6238,7 @@
     },
     "Recipe_Alternate_TurboBlendFuel_C": {
       "slug": "alternate_turbo_blend_fuel_recipe",
-      "name": "Alternate: Turbo Blend Fuel",
+      "name": "Turbo Blend Fuel",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -6270,7 +6270,7 @@
     },
     "Recipe_Alternate_SuperStateComputer_C": {
       "slug": "alternate_super_state_computer_recipe",
-      "name": "Alternate: Super-State Computer",
+      "name": "Super-State Computer",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -6302,7 +6302,7 @@
     },
     "Recipe_Alternate_SloppyAlumina_C": {
       "slug": "alternate_sloppy_alumina_recipe",
-      "name": "Alternate: Sloppy Alumina",
+      "name": "Sloppy Alumina",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -6326,7 +6326,7 @@
     },
     "Recipe_Alternate_RadioControlSystem_C": {
       "slug": "alternate_radio_control_system_recipe",
-      "name": "Alternate: Radio Control System",
+      "name": "Radio Control System",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -6358,7 +6358,7 @@
     },
     "Recipe_Alternate_PlutoniumFuelUnit_C": {
       "slug": "alternate_plutonium_fuel_unit_recipe",
-      "name": "Alternate: Plutonium Fuel Unit",
+      "name": "Plutonium Fuel Unit",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -6382,7 +6382,7 @@
     },
     "Recipe_Alternate_OCSupercomputer_C": {
       "slug": "alternate_oc_supercomputer_recipe",
-      "name": "Alternate: OC Supercomputer",
+      "name": "OC Supercomputer",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -6406,7 +6406,7 @@
     },
     "Recipe_Alternate_InstantScrap_C": {
       "slug": "alternate_instant_scrap_recipe",
-      "name": "Alternate: Instant Scrap",
+      "name": "Instant Scrap",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -6442,7 +6442,7 @@
     },
     "Recipe_Alternate_InstantPlutoniumCell_C": {
       "slug": "alternate_instant_plutonium_cell_recipe",
-      "name": "Alternate: Instant Plutonium Cell",
+      "name": "Instant Plutonium Cell",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -6466,7 +6466,7 @@
     },
     "Recipe_Alternate_HeatFusedFrame_C": {
       "slug": "alternate_heat_fused_frame_recipe",
-      "name": "Alternate: Heat-Fused Frame",
+      "name": "Heat-Fused Frame",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -6498,7 +6498,7 @@
     },
     "Recipe_Alternate_FertileUranium_C": {
       "slug": "alternate_fertile_uranium_recipe",
-      "name": "Alternate: Fertile Uranium",
+      "name": "Fertile Uranium",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -6534,7 +6534,7 @@
     },
     "Recipe_Alternate_ElectricMotor_C": {
       "slug": "alternate_electric_motor_recipe",
-      "name": "Alternate: Electric Motor",
+      "name": "Electric Motor",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -6558,7 +6558,7 @@
     },
     "Recipe_Alternate_DilutedFuel_C": {
       "slug": "alternate_diluted_fuel_recipe",
-      "name": "Alternate: Diluted Fuel",
+      "name": "Diluted Fuel",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -6582,7 +6582,7 @@
     },
     "Recipe_Alternate_CoolingDevice_C": {
       "slug": "alternate_cooling_device_recipe",
-      "name": "Alternate: Cooling Device",
+      "name": "Cooling Device",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -6610,7 +6610,7 @@
     },
     "Recipe_Alternate_ClassicBattery_C": {
       "slug": "alternate_classic_battery_recipe",
-      "name": "Alternate: Classic Battery",
+      "name": "Classic Battery",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -6642,7 +6642,7 @@
     },
     "Recipe_Alternate_AutomatedMiner_C": {
       "slug": "alternate_automated_miner_recipe",
-      "name": "Alternate: Automated Miner",
+      "name": "Automated Miner",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -6666,7 +6666,7 @@
     },
     "Recipe_Alternate_AlcladCasing_C": {
       "slug": "alternate_alclad_casing_recipe",
-      "name": "Alternate: Alclad Casing",
+      "name": "Alclad Casing",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -6690,7 +6690,7 @@
     },
     "Recipe_Alternate_WetConcrete_C": {
       "slug": "alternate_wet_concrete_recipe",
-      "name": "Alternate: Wet Concrete",
+      "name": "Wet Concrete",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -6714,7 +6714,7 @@
     },
     "Recipe_Alternate_TurboHeavyFuel_C": {
       "slug": "alternate_turbo_heavy_fuel_recipe",
-      "name": "Alternate: Turbo Heavy Fuel",
+      "name": "Turbo Heavy Fuel",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -6738,7 +6738,7 @@
     },
     "Recipe_Alternate_SteelRod_C": {
       "slug": "alternate_steel_rod_recipe",
-      "name": "Alternate: Steel Rod",
+      "name": "Steel Rod",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -6758,7 +6758,7 @@
     },
     "Recipe_Alternate_SteelCanister_C": {
       "slug": "alternate_steel_canister_recipe",
-      "name": "Alternate: Steel Canister",
+      "name": "Steel Canister",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -6778,7 +6778,7 @@
     },
     "Recipe_Alternate_SteamedCopperSheet_C": {
       "slug": "alternate_steamed_copper_sheet_recipe",
-      "name": "Alternate: Steamed Copper Sheet",
+      "name": "Steamed Copper Sheet",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -6802,7 +6802,7 @@
     },
     "Recipe_Alternate_RubberConcrete_C": {
       "slug": "alternate_rubber_concrete_recipe",
-      "name": "Alternate: Rubber Concrete",
+      "name": "Rubber Concrete",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -6826,7 +6826,7 @@
     },
     "Recipe_Alternate_RecycledRubber_C": {
       "slug": "alternate_recycled_rubber_recipe",
-      "name": "Alternate: Recycled Rubber",
+      "name": "Recycled Rubber",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -6850,7 +6850,7 @@
     },
     "Recipe_Alternate_PureQuartzCrystal_C": {
       "slug": "alternate_pure_quartz_crystal_recipe",
-      "name": "Alternate: Pure Quartz Crystal",
+      "name": "Pure Quartz Crystal",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -6874,7 +6874,7 @@
     },
     "Recipe_Alternate_PureIronIngot_C": {
       "slug": "alternate_pure_iron_ingot_recipe",
-      "name": "Alternate: Pure Iron Ingot",
+      "name": "Pure Iron Ingot",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -6898,7 +6898,7 @@
     },
     "Recipe_Alternate_PureCopperIngot_C": {
       "slug": "alternate_pure_copper_ingot_recipe",
-      "name": "Alternate: Pure Copper Ingot",
+      "name": "Pure Copper Ingot",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -6922,7 +6922,7 @@
     },
     "Recipe_Alternate_PureCateriumIngot_C": {
       "slug": "alternate_pure_caterium_ingot_recipe",
-      "name": "Alternate: Pure Caterium Ingot",
+      "name": "Pure Caterium Ingot",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -6946,7 +6946,7 @@
     },
     "Recipe_PureAluminumIngot_C": {
       "slug": "alternate_pure_aluminum_ingot_recipe",
-      "name": "Alternate: Pure Aluminum Ingot",
+      "name": "Pure Aluminum Ingot",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -6966,7 +6966,7 @@
     },
     "Recipe_Alternate_PolymerResin_C": {
       "slug": "alternate_polymer_resin_recipe",
-      "name": "Alternate: Polymer Resin",
+      "name": "Polymer Resin",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -6990,7 +6990,7 @@
     },
     "Recipe_Alternate_PlasticSmartPlating_C": {
       "slug": "alternate_plastic_smart_plating_recipe",
-      "name": "Alternate: Plastic Smart Plating",
+      "name": "Plastic Smart Plating",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -7018,7 +7018,7 @@
     },
     "Recipe_Alternate_HighSpeedWiring_C": {
       "slug": "alternate_automated_speed_wiring_recipe",
-      "name": "Alternate: Automated Speed Wiring",
+      "name": "Automated Speed Wiring",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -7046,7 +7046,7 @@
     },
     "Recipe_Alternate_HeavyOilResidue_C": {
       "slug": "alternate_heavy_oil_residue_recipe",
-      "name": "Alternate: Heavy Oil Residue",
+      "name": "Heavy Oil Residue",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -7070,7 +7070,7 @@
     },
     "Recipe_Alternate_HeavyFlexibleFrame_C": {
       "slug": "alternate_heavy_flexible_frame_recipe",
-      "name": "Alternate: Heavy Flexible Frame",
+      "name": "Heavy Flexible Frame",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -7102,7 +7102,7 @@
     },
     "Recipe_Alternate_FusedWire_C": {
       "slug": "alternate_fused_wire_recipe",
-      "name": "Alternate: Fused Wire",
+      "name": "Fused Wire",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -7126,7 +7126,7 @@
     },
     "Recipe_Alternate_FlexibleFramework_C": {
       "slug": "alternate_flexible_framework_recipe",
-      "name": "Alternate: Flexible Framework",
+      "name": "Flexible Framework",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -7154,7 +7154,7 @@
     },
     "Recipe_Alternate_ElectrodeCircuitBoard_C": {
       "slug": "alternate_electrode_circuit_board_recipe",
-      "name": "Alternate: Electrode Circuit Board",
+      "name": "Electrode Circuit Board",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -7178,7 +7178,7 @@
     },
     "Recipe_Alternate_ElectroAluminumScrap_C": {
       "slug": "alternate_electrode_aluminum_scrap_recipe",
-      "name": "Alternate: Electrode Aluminum Scrap",
+      "name": "Electrode Aluminum Scrap",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -7206,7 +7206,7 @@
     },
     "Recipe_Alternate_DilutedPackagedFuel_C": {
       "slug": "alternate_diluted_packaged_fuel_recipe",
-      "name": "Alternate: Diluted Packaged Fuel",
+      "name": "Diluted Packaged Fuel",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -7230,7 +7230,7 @@
     },
     "Recipe_Alternate_CopperRotor_C": {
       "slug": "alternate_copper_rotor_recipe",
-      "name": "Alternate: Copper Rotor",
+      "name": "Copper Rotor",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -7254,7 +7254,7 @@
     },
     "Recipe_Alternate_CopperAlloyIngot_C": {
       "slug": "alternate_copper_alloy_ingot_recipe",
-      "name": "Alternate: Copper Alloy Ingot",
+      "name": "Copper Alloy Ingot",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -7278,7 +7278,7 @@
     },
     "Recipe_Alternate_CokeSteelIngot_C": {
       "slug": "alternate_coke_steel_ingot_recipe",
-      "name": "Alternate: Coke Steel Ingot",
+      "name": "Coke Steel Ingot",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -7302,7 +7302,7 @@
     },
     "Recipe_Alternate_CoatedIronPlate_C": {
       "slug": "alternate_coated_iron_plate_recipe",
-      "name": "Alternate: Coated Iron Plate",
+      "name": "Coated Iron Plate",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -7326,7 +7326,7 @@
     },
     "Recipe_Alternate_CoatedIronCanister_C": {
       "slug": "alternate_coated_iron_canister_recipe",
-      "name": "Alternate: Coated Iron Canister",
+      "name": "Coated Iron Canister",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -7350,7 +7350,7 @@
     },
     "Recipe_Alternate_CoatedCable_C": {
       "slug": "alternate_coated_cable_recipe",
-      "name": "Alternate: Coated Cable",
+      "name": "Coated Cable",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -7374,7 +7374,7 @@
     },
     "Recipe_Alternate_BoltedFrame_C": {
       "slug": "alternate_bolted_frame_recipe",
-      "name": "Alternate: Bolted Frame",
+      "name": "Bolted Frame",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -7398,7 +7398,7 @@
     },
     "Recipe_Alternate_AdheredIronPlate_C": {
       "slug": "alternate_adhered_iron_plate_recipe",
-      "name": "Alternate: Adhered Iron Plate",
+      "name": "Adhered Iron Plate",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -7422,7 +7422,7 @@
     },
     "Recipe_Alternate_RocketFuel_Nitro_C": {
       "slug": "alternate_nitro_rocket_fuel_recipe",
-      "name": "Alternate: Nitro Rocket Fuel",
+      "name": "Nitro Rocket Fuel",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -7458,7 +7458,7 @@
     },
     "Recipe_Alternate_IonizedFuel_Dark_C": {
       "slug": "alternate_dark_ion_fuel_recipe",
-      "name": "Alternate: Dark-Ion Fuel",
+      "name": "Dark-Ion Fuel",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -7486,7 +7486,7 @@
     },
     "Recipe_Alternate_Diamond_Turbo_C": {
       "slug": "alternate_turbo_diamonds_recipe",
-      "name": "Alternate: Turbo Diamonds",
+      "name": "Turbo Diamonds",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -7510,7 +7510,7 @@
     },
     "Recipe_Alternate_Diamond_Pink_C": {
       "slug": "alternate_pink_diamonds_recipe",
-      "name": "Alternate: Pink Diamonds",
+      "name": "Pink Diamonds",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -7534,7 +7534,7 @@
     },
     "Recipe_Alternate_Diamond_Petroleum_C": {
       "slug": "alternate_petroleum_diamonds_recipe",
-      "name": "Alternate: Petroleum Diamonds",
+      "name": "Petroleum Diamonds",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -7554,7 +7554,7 @@
     },
     "Recipe_Alternate_Diamond_OilBased_C": {
       "slug": "alternate_oil_based_diamonds_recipe",
-      "name": "Alternate: Oil-Based Diamonds",
+      "name": "Oil-Based Diamonds",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -7574,7 +7574,7 @@
     },
     "Recipe_Alternate_Diamond_Cloudy_C": {
       "slug": "alternate_cloudy_diamonds_recipe",
-      "name": "Alternate: Cloudy Diamonds",
+      "name": "Cloudy Diamonds",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -7598,7 +7598,7 @@
     },
     "Recipe_Alternate_DarkMatter_Trap_C": {
       "slug": "alternate_dark_matter_trap_recipe",
-      "name": "Alternate: Dark Matter Trap",
+      "name": "Dark Matter Trap",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
@@ -7622,7 +7622,7 @@
     },
     "Recipe_Alternate_DarkMatter_Crystallization_C": {
       "slug": "alternate_dark_matter_crystallization_recipe",
-      "name": "Alternate: Dark Matter Crystallization",
+      "name": "Dark Matter Crystallization",
       "isAlternate": true,
       "isConversion": false,
       "ingredients": [
