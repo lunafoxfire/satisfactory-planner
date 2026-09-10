@@ -1,4 +1,3 @@
-- show solver errors to user
 - figure out solver failing to solve some factories correctly
   - maximize sometimes fails (works for computer, not supercomputer)
     - it's because of biocoal/charcoal
@@ -10,6 +9,7 @@
 - share button
 - maybe redo font
 - report tabs
+- sink points
 - additional objectives: complexity, num buildings
 - DEPLOYYYY
 - recipe picker jumps around when picking recipes???
