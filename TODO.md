@@ -1,5 +1,3 @@
-- fix missing areas and power costs
-- set solver objective
 - show solver errors to user
 - figure out solver failing to solve some factories correctly
   - maximize sometimes fails (works for computer, not supercomputer)
@@ -11,4 +9,5 @@
 - share button
 - maybe redo font
 - report tabs
+- additional objectives: complexity, num buildings
 - DEPLOYYYY

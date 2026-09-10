@@ -1,5 +1,6 @@
 import type { StateCreator } from "zustand";
 import type { PlannerStore } from "./store";
+import type { SolverObjective } from "#lib/solver/problem";
 
 export type ProductionTarget =
     | {
@@ -25,6 +26,7 @@ export type ProductionTarget =
 export interface ProductionState {
     production: {
         targets: ProductionTarget[];
+        objective: SolverObjective;
     };
 }
 
@@ -40,6 +42,8 @@ export interface ProductionActions {
     setProductionTargetRecipe: (id: string, recipeId: string | null) => void;
     setProductionTargetMultiplier: (id: string, multiplier: number) => void;
     setProductionTargetPriority: (id: string, priority: number) => void;
+
+    setProductionObjective: (objective: SolverObjective) => void;
 }
 
 export type ProductionSlice = ProductionState & ProductionActions;
@@ -55,6 +59,7 @@ export const createProductionSlice: StateCreator<PlannerStore, [], [], Productio
     = (set) => ({
         production: {
             targets: [],
+            objective: "minimizeResourceUsage"
         },
 
         addProductionTarget: () =>
@@ -172,6 +177,14 @@ export const createProductionSlice: StateCreator<PlannerStore, [], [], Productio
                             ? { ...target, priority }
                             : target,
                     ),
+                },
+            })),
+
+        setProductionObjective: (objective) =>
+            set((state) => ({
+                production: {
+                    ...state.production,
+                    objective,
                 },
             })),
     });

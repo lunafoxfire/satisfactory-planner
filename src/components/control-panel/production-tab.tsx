@@ -4,7 +4,7 @@ import { Button } from "#components/ui/button";
 import { usePlannerStore } from "#lib/store/planner/store";
 import { useGameData } from "#hooks/use-game-data";
 import { SectionCard } from "#components/section-card";
-import type { DropdownItem } from "#components/dropdown";
+import { Dropdown, type DropdownItem } from "#components/dropdown";
 import { ProductionTarget } from "./production-target";
 
 
@@ -15,6 +15,9 @@ export function ProductionTab() {
 
     const productionTargets = usePlannerStore((state) => state.production.targets);
     const addProductionTarget = usePlannerStore((state) => state.addProductionTarget);
+
+    const objective = usePlannerStore((state) => state.production.objective);
+    const setObjective = usePlannerStore((state) => state.setProductionObjective);
 
     const producableItems: DropdownItem[] = useMemo(() => Object.entries(gameData.items)
         .filter(([_, item]) =>
@@ -42,34 +45,55 @@ export function ProductionTab() {
                 title="Production Targets"
                 description="Select your production targets. When maximizing multiple outputs, the lower priority number will be maximized first."
             >
-                {productionTargets.length === 0 ? (
-                    <div className="flex h-32 items-center justify-center rounded-md border border-dashed">
-                        <Button
-                            variant="ghost"
-                            onClick={addProductionTarget}
-                        >
-                            <Plus />
-                            Add Product
-                        </Button>
-                    </div>
-                ) : (
-                    <div className="flex flex-col gap-4">
-                        {productionTargets.map((target) => (
-                            <ProductionTarget
-                                key={target.id}
-                                id={target.id}
-                                items={producableItems}
-                            />
-                        ))}
-                        <Button
-                            size="sm"
-                            onClick={addProductionTarget}
-                        >
-                            <Plus />
-                            Add Product
-                        </Button>
-                    </div>
-                )}
+                <div className="flex flex-col gap-4">
+                    <Dropdown
+                        label="Optimize Objective"
+                        value={objective}
+                        onValueChange={(value) => {
+                            if (
+                                value === "minimizeResourceUsage"
+                                || value === "minimizePowerUsage"
+                                || value === "minimizeFactoryArea"
+                            ) {
+                                setObjective(value);
+                            }
+                        }}
+                        items={[
+                            { value: "minimizeResourceUsage", label: "Minimize Resource Usage" },
+                            { value: "minimizePowerUsage", label: "Minimize Power Usage" },
+                            { value: "minimizeFactoryArea", label: "Minimize Footprint" },
+                        ]}
+                    />
+
+                    {productionTargets.length === 0 ? (
+                        <div className="flex h-32 items-center justify-center rounded-md border border-dashed">
+                            <Button
+                                variant="ghost"
+                                onClick={addProductionTarget}
+                            >
+                                <Plus />
+                                Add Product
+                            </Button>
+                        </div>
+                    ) : (
+                        <div className="flex flex-col gap-4">
+                            {productionTargets.map((target) => (
+                                <ProductionTarget
+                                    key={target.id}
+                                    id={target.id}
+                                    items={producableItems}
+                                />
+                            ))}
+                            <Button
+                                size="sm"
+                                onClick={addProductionTarget}
+                            >
+                                <Plus />
+                                Add Product
+                            </Button>
+                        </div>
+                    )}
+                </div>
             </SectionCard>
         </div>
     );

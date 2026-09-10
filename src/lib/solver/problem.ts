@@ -227,8 +227,8 @@ function compileSolverMaximizeTargets(_gameData: GameData, store: PlannerState):
     return solverMaximizeTargets;
 }
 
-function compileSolverObjective(_gameData: GameData, _store: PlannerState): SolverObjective {
-    return "minimizeResourceUsage";
+function compileSolverObjective(_gameData: GameData, store: PlannerState): SolverObjective {
+    return store.production.objective;
 }
 
 function cleanSolverProblem(solverProblem: SolverProblem): SolverProblem {
