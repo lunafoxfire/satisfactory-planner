@@ -2,8 +2,8 @@
   "version": "v1.2",
   "resources": {
     "Desc_LiquidOil_C": {
-      "maxExtraction": 11700,
-      "relativeValue": 622
+      "maxExtraction": 12600,
+      "relativeValue": 730
     },
     "Desc_Water_C": {
       "maxExtraction": 0,
@@ -11,47 +11,47 @@
     },
     "Desc_NitrogenGas_C": {
       "maxExtraction": 12000,
-      "relativeValue": 606
+      "relativeValue": 767
     },
     "Desc_OreIron_C": {
-      "maxExtraction": 72780,
+      "maxExtraction": 92100,
       "relativeValue": 100
     },
     "Desc_Coal_C": {
-      "maxExtraction": 34680,
-      "relativeValue": 209
+      "maxExtraction": 42300,
+      "relativeValue": 217
     },
     "Desc_OreCopper_C": {
-      "maxExtraction": 31140,
-      "relativeValue": 233
+      "maxExtraction": 36900,
+      "relativeValue": 249
     },
     "Desc_Stone_C": {
-      "maxExtraction": 57300,
-      "relativeValue": 127
+      "maxExtraction": 69300,
+      "relativeValue": 132
     },
     "Desc_RawQuartz_C": {
-      "maxExtraction": 10560,
-      "relativeValue": 689
+      "maxExtraction": 13500,
+      "relativeValue": 682
     },
     "Desc_SAM_C": {
-      "maxExtraction": 8940,
-      "relativeValue": 814
+      "maxExtraction": 10200,
+      "relativeValue": 902
     },
     "Desc_OreBauxite_C": {
-      "maxExtraction": 9780,
-      "relativeValue": 744
+      "maxExtraction": 12300,
+      "relativeValue": 748
     },
     "Desc_OreGold_C": {
-      "maxExtraction": 11640,
-      "relativeValue": 625
+      "maxExtraction": 15000,
+      "relativeValue": 614
     },
     "Desc_Sulfur_C": {
-      "maxExtraction": 8700,
-      "relativeValue": 836
+      "maxExtraction": 10800,
+      "relativeValue": 852
     },
     "Desc_OreUranium_C": {
       "maxExtraction": 2100,
-      "relativeValue": 3465
+      "relativeValue": 4385
     }
   },
   "buildings": {
@@ -59,7 +59,7 @@
       "slug": "resource_well_pressurizer",
       "name": "Resource Well Pressurizer",
       "power": 150,
-      "area": 400,
+      "area": 225,
       "buildCost": [
         {
           "itemId": "Desc_ModularFrameLightweight_C",
@@ -88,7 +88,7 @@
       "slug": "resource_well_extractor",
       "name": "Resource Well Extractor",
       "power": 0,
-      "area": 16,
+      "area": 25,
       "buildCost": [
         {
           "itemId": "Desc_SteelPlate_C",
@@ -126,7 +126,7 @@
       "slug": "nuclear_power_plant",
       "name": "Nuclear Power Plant",
       "power": -2500,
-      "area": 1548,
+      "area": 1512,
       "buildCost": [
         {
           "itemId": "Desc_ComputerSuper_C",
@@ -172,7 +172,7 @@
       "slug": "smelter",
       "name": "Smelter",
       "power": 4,
-      "area": 54,
+      "area": 51,
       "buildCost": [
         {
           "itemId": "Desc_IronRod_C",
@@ -189,7 +189,7 @@
       "slug": "foundry",
       "name": "Foundry",
       "power": 16,
-      "area": 90,
+      "area": 100,
       "buildCost": [
         {
           "itemId": "Desc_ModularFrame_C",
@@ -210,7 +210,7 @@
       "slug": "refinery",
       "name": "Refinery",
       "power": 30,
-      "area": 200,
+      "area": 220,
       "buildCost": [
         {
           "itemId": "Desc_Motor_C",
@@ -281,7 +281,7 @@
       "slug": "assembler",
       "name": "Assembler",
       "power": 15,
-      "area": 150,
+      "area": 144,
       "buildCost": [
         {
           "itemId": "Desc_IronPlateReinforced_C",
@@ -327,7 +327,7 @@
       "slug": "particle_accelerator",
       "name": "Particle Accelerator",
       "power": 875,
-      "area": 912,
+      "area": 1431,
       "buildCost": [
         {
           "itemId": "Desc_MotorLightweight_C",
@@ -356,7 +356,7 @@
       "slug": "converter",
       "name": "Converter",
       "power": 250,
-      "area": 0,
+      "area": 256,
       "buildCost": [
         {
           "itemId": "Desc_ModularFrameFused_C",
@@ -380,8 +380,8 @@
     "Desc_QuantumEncoder_C": {
       "slug": "quantum_encoder",
       "name": "Quantum Encoder",
-      "power": 0,
-      "area": 0,
+      "power": 1000,
+      "area": 1100,
       "buildCost": [
         {
           "itemId": "Desc_MotorLightweight_C",
@@ -431,7 +431,7 @@
       "slug": "oil_extractor",
       "name": "Oil Extractor",
       "power": 40,
-      "area": 112,
+      "area": 104,
       "buildCost": [
         {
           "itemId": "Desc_Motor_C",
@@ -506,7 +506,7 @@
       "slug": "water_extractor",
       "name": "Water Extractor",
       "power": 20,
-      "area": 390,
+      "area": 360,
       "buildCost": [
         {
           "itemId": "Desc_CopperSheet_C",

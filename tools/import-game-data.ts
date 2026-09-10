@@ -79,8 +79,8 @@ function getBuildings(
 
         let area = 0;
         if (buildingData.size) {
-            const { length, width } = buildingData.size;
-            area = length * width;
+            const { x, y } = buildingData.size;
+            area = x * y;
         }
 
         let buildCost = [];
