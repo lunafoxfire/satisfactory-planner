@@ -100,6 +100,7 @@ function getBuildings(
             power,
             area,
             buildCost,
+            isResourceExtractor: buildingData.isResourceExtractor,
             isFicsmas: buildingData.event === "FICSMAS",
         };
     });

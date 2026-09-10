@@ -38,6 +38,7 @@ export const BuildingSchema = z.object({
     power: z.number(),
     area: z.number(),
     buildCost: z.array(ItemAmountSchema),
+    isResourceExtractor: z.boolean(),
     isFicsmas: z.boolean(),
 });
 

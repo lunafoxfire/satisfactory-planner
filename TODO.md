@@ -1,5 +1,4 @@
-- report tabs
-- sink points
+- sink points production goal
 - share button
 - maybe redo font
 - DEPLOYYYY

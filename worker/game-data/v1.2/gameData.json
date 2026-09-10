@@ -82,6 +82,7 @@
           "quantity": 100
         }
       ],
+      "isResourceExtractor": true,
       "isFicsmas": false
     },
     "Desc_FrackingExtractor_C": {
@@ -99,6 +100,7 @@
           "quantity": 10
         }
       ],
+      "isResourceExtractor": true,
       "isFicsmas": false
     },
     "Desc_GeneratorCoal_C": {
@@ -120,6 +122,7 @@
           "quantity": 30
         }
       ],
+      "isResourceExtractor": false,
       "isFicsmas": false
     },
     "Desc_GeneratorNuclear_C": {
@@ -149,6 +152,7 @@
           "quantity": 250
         }
       ],
+      "isResourceExtractor": false,
       "isFicsmas": false
     },
     "Desc_ConstructorMk1_C": {
@@ -166,6 +170,7 @@
           "quantity": 8
         }
       ],
+      "isResourceExtractor": false,
       "isFicsmas": false
     },
     "Desc_SmelterMk1_C": {
@@ -183,6 +188,7 @@
           "quantity": 8
         }
       ],
+      "isResourceExtractor": false,
       "isFicsmas": false
     },
     "Desc_FoundryMk1_C": {
@@ -204,6 +210,7 @@
           "quantity": 20
         }
       ],
+      "isResourceExtractor": false,
       "isFicsmas": false
     },
     "Desc_OilRefinery_C": {
@@ -229,6 +236,7 @@
           "quantity": 20
         }
       ],
+      "isResourceExtractor": false,
       "isFicsmas": false
     },
     "Desc_Packager_C": {
@@ -250,6 +258,7 @@
           "quantity": 10
         }
       ],
+      "isResourceExtractor": false,
       "isFicsmas": false
     },
     "Desc_ManufacturerMk1_C": {
@@ -275,6 +284,7 @@
           "quantity": 50
         }
       ],
+      "isResourceExtractor": false,
       "isFicsmas": false
     },
     "Desc_AssemblerMk1_C": {
@@ -296,6 +306,7 @@
           "quantity": 10
         }
       ],
+      "isResourceExtractor": false,
       "isFicsmas": false
     },
     "Desc_Blender_C": {
@@ -321,6 +332,7 @@
           "quantity": 50
         }
       ],
+      "isResourceExtractor": false,
       "isFicsmas": false
     },
     "Desc_HadronCollider_C": {
@@ -350,6 +362,7 @@
           "quantity": 500
         }
       ],
+      "isResourceExtractor": false,
       "isFicsmas": false
     },
     "Desc_Converter_C": {
@@ -375,6 +388,7 @@
           "quantity": 100
         }
       ],
+      "isResourceExtractor": false,
       "isFicsmas": false
     },
     "Desc_QuantumEncoder_C": {
@@ -404,6 +418,7 @@
           "quantity": 100
         }
       ],
+      "isResourceExtractor": false,
       "isFicsmas": false
     },
     "Desc_MinerMk1_C": {
@@ -425,6 +440,7 @@
           "quantity": 10
         }
       ],
+      "isResourceExtractor": true,
       "isFicsmas": false
     },
     "Desc_OilPump_C": {
@@ -446,6 +462,7 @@
           "quantity": 60
         }
       ],
+      "isResourceExtractor": true,
       "isFicsmas": false
     },
     "Desc_MinerMk2_C": {
@@ -471,6 +488,7 @@
           "quantity": 10
         }
       ],
+      "isResourceExtractor": true,
       "isFicsmas": false
     },
     "Desc_MinerMk3_C": {
@@ -500,6 +518,7 @@
           "quantity": 3
         }
       ],
+      "isResourceExtractor": true,
       "isFicsmas": false
     },
     "Desc_WaterPump_C": {
@@ -521,6 +540,7 @@
           "quantity": 10
         }
       ],
+      "isResourceExtractor": true,
       "isFicsmas": false
     }
   },

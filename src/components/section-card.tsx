@@ -12,7 +12,7 @@ export function SectionCard({ title, description, children }: PropsWithChildren<
             className="bg-card/70 backdrop-blur-xs"
         >
             <CardHeader>
-                <CardTitle>{title}</CardTitle>
+                <CardTitle className="text-lg">{title}</CardTitle>
                 {
                     description && <CardDescription>{description}</CardDescription>
                 }
