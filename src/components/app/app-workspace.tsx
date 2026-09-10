@@ -6,9 +6,7 @@ import { SolveOnChange } from "./solve-on-change";
 export function AppWorkspace() {
     return (
         <div className="relative h-full overflow-x-clip">
-            <main className="h-full min-w-0">
-                <ProductionGraphContainer />
-            </main>
+            <ProductionGraphContainer />
             <ControlPanel />
             <ReportsPanel />
             <SolveOnChange />

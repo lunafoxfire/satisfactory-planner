@@ -14,7 +14,7 @@ export function ControlPanel() {
     return (
         <aside
             className={cn(
-                "absolute inset-y-0 left-0 z-20 flex flex-col w-100 min-h-0 border-r bg-background",
+                "absolute inset-y-0 left-0 z-50 flex flex-col w-[33%] max-w-120 min-w-72 min-h-0 border-r bg-background/70 backdrop-blur-xs",
                 "transform-gpu transition-transform duration-300 ease-[cubic-bezier(0, 0.5, 0.5, 1)] motion-reduce:transition-none",
                 open ? "translate-x-0" : "-translate-x-full"
             )}
