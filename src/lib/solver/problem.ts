@@ -117,7 +117,7 @@ function compileSolverInputs(gameData: GameData, store: PlannerState): Record<st
         }
 
         const rate = input.unlimited ? Infinity : input.rate;
-        const relativeValue = 1;
+        const relativeValue = 0;
         if (solverInputs[input.itemId]) {
             solverInputs[input.itemId].rate += rate;
         }
@@ -159,6 +159,17 @@ function compileSolverInputs(gameData: GameData, store: PlannerState): Record<st
                     relativeValue: 1000,
                 };
             }
+        }
+    }
+
+    if (store.recipes.ficsmasEnabled) {
+        const giftId = "Desc_Gift_C";
+        const giftItem = gameData.items[giftId];
+        if (giftItem) {
+            solverInputs[giftId] = {
+                rate: Infinity,
+                relativeValue: 1000,
+            };
         }
     }
 

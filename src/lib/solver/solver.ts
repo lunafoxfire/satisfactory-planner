@@ -31,6 +31,7 @@ export type SolveResult =
     };
 
 export async function solve(gameData: GameData, store: PlannerState): Promise<SolveResult> {
+    console.clear();
     const highs = (await highsPromise);
 
     const problem = compileSolverProblem(gameData, store);
@@ -38,7 +39,9 @@ export async function solve(gameData: GameData, store: PlannerState): Promise<So
     let continueSolving = true;
 
     function solveSubproblem(maximizeTarget: string | null) {
+        console.log(`TARGET ITEM: ${maximizeTarget}`);
         const model = compileLinearModel(problem, maximizeTarget);
+        console.log(model);
         const lp = getLP(model);
 
         const lpResult = highs.solve(lp, { output_flag: false });
@@ -46,6 +49,7 @@ export async function solve(gameData: GameData, store: PlannerState): Promise<So
 
         updateProblem(problem, subresult);
         result = mergeResults(result, subresult);
+        console.log(result);
         if (!(result.status === "success" || result.status === "empty")) {
             continueSolving = false;
         }
@@ -63,10 +67,13 @@ export async function solve(gameData: GameData, store: PlannerState): Promise<So
         solveSubproblem(maximizeTarget);
         if (!continueSolving) break;
     }
-    if (continueSolving) {
+    if (continueSolving && Object.keys(problem.targets).length > 0) {
         solveSubproblem(null);
     }
 
+    result = validateResult(problem, result);
+    console.log("----------------");
+    console.log(result);
     return result;
 }
 
@@ -193,6 +200,22 @@ function mergeResults(result: SolveResult, subresult: SolveResult): SolveResult 
     for (const targetId of subresult.targets) {
         result.targets.add(targetId);
     }
+
+    return result;
+}
+
+function validateResult(problem: SolverProblem, result: SolveResult): SolveResult {
+    if (result.status !== "success") {
+        return result;
+    }
+    const targetItemIds = [
+        ...Object.keys(problem.targets),
+        ...Object.keys(problem.maximizeTargets)
+    ];
+    const missingTarget = !!targetItemIds.find((targetId) => !result.outputs[targetId]);
+    if (missingTarget) return { status: "infeasible" };
+
+    if (Object.keys(result.recipes).length === 0) return { status: "empty" };
 
     return result;
 }

@@ -118,7 +118,7 @@ function compileObjective(problem: SolverProblem, maximizeTarget: string | null)
     if (maximizeTarget) {
         objective.coefficients.push({
             variable: maximizeTarget,
-            coefficient: -1000
+            coefficient: -1_000_000
         });
     }
 
@@ -136,11 +136,6 @@ function compileObjective(problem: SolverProblem, maximizeTarget: string | null)
             if (usedIn) {
                 resourcePenalty += resource.relativeValue / 100 * usedIn.rate;
             }
-
-            const producedIn = recipe.products.find((p) => p.itemId === resourceId);
-            if (producedIn) {
-                resourcePenalty -= resource.relativeValue / 100 * producedIn.rate;
-            }
         }
 
         let powerPenalty = 0;
@@ -148,7 +143,7 @@ function compileObjective(problem: SolverProblem, maximizeTarget: string | null)
             powerPenalty = recipe.power;
         }
 
-        let areaPenalty = recipe.area;
+        let areaPenalty = recipe.area / 10;
 
         const totalPenalty =
             resourceMultiplier * resourcePenalty

@@ -18,7 +18,7 @@ function getErrorDisplay(status: Exclude<SolveStatus, "success">): ErrorDisplay 
         case "unbounded":
             return {
                 header: "Unbounded Solution",
-                message: "An infinite amount of products can be made. Don't forget that hand-gathered resources are considered infinite if enabled!",
+                message: "An infinite amount of products can be made. Don't forget that hand-gathered resources are considered unlimited if enabled!",
             };
         case "infeasible":
             return {
