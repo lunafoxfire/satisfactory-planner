@@ -1,14 +1,9 @@
 import type { StateCreator } from "zustand";
 import type { PlannerStore } from "./store";
-import type { GameData } from "#data/schema";
+import type { GameData } from "#data/game-data-schema";
 
-export interface RecipeState {
-    recipes: {
-        enabled: Record<string, boolean>;
-        conversionsEnabled: boolean;
-        ficsmasEnabled: boolean;
-    };
-}
+import type { RecipeState } from "#data/shared-factory-schema";
+export type { RecipeState };
 
 export interface RecipeActions {
     initRecipes: (gameData: GameData) => void;

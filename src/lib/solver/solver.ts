@@ -1,5 +1,5 @@
 import loadHighs, { type HighsModelStatus, type HighsSolution } from "highs";
-import type { GameData } from "#data/schema";
+import type { GameData } from "#data/game-data-schema";
 import type { PlannerState } from "#lib/store/planner/store";
 import { compileLinearModel } from "./linear-model";
 import { getLP } from "./lp";
@@ -31,7 +31,7 @@ export type SolveResult =
     };
 
 export async function solve(gameData: GameData, store: PlannerState): Promise<SolveResult> {
-    console.clear();
+    // console.clear();
     const highs = (await highsPromise);
 
     const problem = compileSolverProblem(gameData, store);
@@ -39,9 +39,9 @@ export async function solve(gameData: GameData, store: PlannerState): Promise<So
     let continueSolving = true;
 
     function solveSubproblem(maximizeTarget: string | null) {
-        console.log(`TARGET ITEM: ${maximizeTarget}`);
+        // console.log(`TARGET ITEM: ${maximizeTarget}`);
         const model = compileLinearModel(problem, maximizeTarget);
-        console.log(model);
+        // console.log(model);
         const lp = getLP(model);
 
         const lpResult = highs.solve(lp, { output_flag: false });
@@ -49,7 +49,7 @@ export async function solve(gameData: GameData, store: PlannerState): Promise<So
 
         updateProblem(problem, subresult);
         result = mergeResults(result, subresult);
-        console.log(result);
+        // console.log(result);
         if (!(result.status === "success" || result.status === "empty")) {
             continueSolving = false;
         }
@@ -72,8 +72,8 @@ export async function solve(gameData: GameData, store: PlannerState): Promise<So
     }
 
     result = validateResult(problem, result);
-    console.log("----------------");
-    console.log(result);
+    // console.log("----------------");
+    // console.log(result);
     return result;
 }
 

@@ -38,6 +38,9 @@ importers:
       highs:
         specifier: ^1.15.2
         version: 1.15.2
+      hono:
+        specifier: ^4.13.7
+        version: 4.13.7
       lucide-react:
         specifier: ^1.41.0
         version: 1.41.0(react@19.2.8)

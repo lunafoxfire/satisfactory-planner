@@ -1,10 +1,11 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import { createProductionSlice, type ProductionActions, type ProductionState } from "./production";
-import { createInputSlice, type InputActions, type InputState } from "./inputs";
-import { createRecipeSlice, type RecipeActions, type RecipeState } from "./recipes";
+import { createProductionSlice, type ProductionActions } from "./production";
+import { createInputSlice, type InputActions } from "./inputs";
+import { createRecipeSlice, type RecipeActions } from "./recipes";
 
-export type PlannerState = ProductionState & InputState & RecipeState;
+import type { PlannerState } from "#data/shared-factory-schema";
+export type { PlannerState };
 export type PlannerActions = ProductionActions & InputActions & RecipeActions;
 export type PlannerStore = PlannerState & PlannerActions;
 
@@ -18,6 +19,11 @@ export const usePlannerStore = create<PlannerStore>()(
         {
             name: "satisfactory-planner",
             version: 1,
+            partialize: (state) => ({
+                production: state.production,
+                input: state.input,
+                recipes: state.recipes,
+            }),
         },
     ),
 );

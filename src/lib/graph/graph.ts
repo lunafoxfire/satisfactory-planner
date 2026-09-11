@@ -1,4 +1,4 @@
-import type { GameData } from "#data/schema";
+import type { GameData } from "#data/game-data-schema";
 import type { SolveResult } from "#lib/solver/solver";
 
 export type ItemNodeSubtype =

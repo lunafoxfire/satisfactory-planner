@@ -1,27 +1,15 @@
 import type { StateCreator } from "zustand";
 import type { PlannerStore } from "./store";
-import type { GameData } from "#data/schema";
+import type { GameData } from "#data/game-data-schema";
 
-export interface InputItem {
-    id: string;
-    itemId: string | null;
-    rate: number;
-    unlimited: boolean;
-}
+import type { InputItem } from "#data/shared-factory-schema";
+export type { InputItem };
 
-export interface InputResource {
-    itemId: string;
-    rate: number;
-    unlimited: boolean;
-}
+import type { InputResource } from "#data/shared-factory-schema";
+export type { InputResource };
 
-export interface InputState {
-    input: {
-        items: InputItem[];
-        resources: InputResource[];
-        allowHandGathered: boolean;
-    };
-}
+import type { InputState } from "#data/shared-factory-schema";
+export type { InputState };
 
 export interface InputActions {
     addInputItem: () => void;

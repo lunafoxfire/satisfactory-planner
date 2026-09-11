@@ -2,33 +2,11 @@ import type { StateCreator } from "zustand";
 import type { PlannerStore } from "./store";
 import type { SolverObjective } from "#lib/solver/problem";
 
-export type ProductionTarget =
-    | {
-        id: string;
-        itemId: string | null;
-        mode: "itemsPerMinute";
-        rate: number;
-    }
-    | {
-        id: string;
-        itemId: string | null;
-        mode: "fromRecipe";
-        recipeId: string | null;
-        multiplier: number;
-    }
-    | {
-        id: string;
-        itemId: string | null;
-        mode: "maximize";
-        priority: number;
-    };
+import type { ProductionTarget } from "#data/shared-factory-schema";
+export type { ProductionTarget };
 
-export interface ProductionState {
-    production: {
-        targets: ProductionTarget[];
-        objective: SolverObjective;
-    };
-}
+import type { ProductionState } from "#data/shared-factory-schema";
+export type { ProductionState };
 
 export interface ProductionActions {
     addProductionTarget: () => void;

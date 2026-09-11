@@ -1,4 +1,4 @@
-import type { GameData } from "#data/schema";
+import type { GameData } from "#data/game-data-schema";
 import type { PlannerState } from "#lib/store/planner/store";
 
 export interface SolverItem {
@@ -32,10 +32,8 @@ export interface SolverMaximizeTarget {
     priority: number;
 }
 
-export type SolverObjective =
-    | "minimizeResourceUsage"
-    | "minimizePowerUsage"
-    | "minimizeFactoryArea";
+import type { SolverObjective } from "#data/shared-factory-schema";
+export type { SolverObjective };
 
 export type SolverProblem = {
     items: Record<string, SolverItem>;

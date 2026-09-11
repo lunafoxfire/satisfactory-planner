@@ -1,4 +1,4 @@
-import { GameDataSchema } from "#data/schema";
+import { GameDataSchema } from "#data/game-data-schema";
 
 export async function getGameData() {
     const response = await fetch("/api/game-data");

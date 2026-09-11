@@ -1,5 +1,5 @@
 import { SectionCard } from "#components/section-card";
-import type { GameData } from "#data/schema";
+import type { GameData } from "#data/game-data-schema";
 import { useGameData } from "#hooks/use-game-data";
 import type { SolveResult } from "#lib/solver/solver";
 import { useSolverStore } from "#lib/store/solver/store";
