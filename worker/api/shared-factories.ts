@@ -1,8 +1,11 @@
 import { Hono } from "hono";
 import { validator } from "hono/validator";
+import { bodyLimit } from "hono/body-limit";
 import { SharedFactorySchema } from "#data/shared-factory-schema";
 
 const app = new Hono<{ Bindings: Env; }>();
+
+const MAX_SHARED_FACTORY_SIZE = 24 * 1024;
 
 function generateShareId(): string {
     const bytes = crypto.getRandomValues(new Uint8Array(10));
@@ -14,6 +17,24 @@ function generateShareId(): string {
 
 app.post(
     "/",
+    async (c, next) => {
+        const ip = c.req.header("CF-Connecting-IP") ?? "unknown";
+        const { success } = await c.env.SHARE_CREATE_RATE_LIMIT.limit({
+            key: `share:create:${ip}`,
+        });
+
+        if (!success) {
+            return c.json({ error: "Too many requests" }, 429);
+        }
+
+        await next();
+    },
+    bodyLimit({
+        maxSize: MAX_SHARED_FACTORY_SIZE,
+        onError: (c) => {
+            return c.json({ error: "Shared factory is too large" }, 413);
+        },
+    }),
     validator("json", (value, c) => {
         const result = SharedFactorySchema.safeParse(value);
 
@@ -37,7 +58,7 @@ app.post(
         await c.env.DB
             .prepare(
                 `INSERT INTO shared_factories (id, state, created_at, last_viewed_at)
-				 VALUES (?, ?, ?, ?)`,
+                 VALUES (?, ?, ?, ?)`,
             )
             .bind(id, JSON.stringify(factory), now, now)
             .run();
@@ -52,8 +73,8 @@ app.get("/:id", async (c) => {
     const row = await c.env.DB
         .prepare(
             `SELECT state
-			 FROM shared_factories
-			 WHERE id = ?`,
+             FROM shared_factories
+             WHERE id = ?`,
         )
         .bind(id)
         .first<{ state: string; }>();
@@ -71,8 +92,8 @@ app.get("/:id", async (c) => {
     await c.env.DB
         .prepare(
             `UPDATE shared_factories
-			 SET last_viewed_at = ?
-			 WHERE id = ?`,
+             SET last_viewed_at = ?
+             WHERE id = ?`,
         )
         .bind(Date.now(), id)
         .run();

@@ -21,7 +21,17 @@
 			"database_id": "58a62112-d7b3-4fa8-a3e4-f1cca1b79430",
             "migrations_dir": "migrations"
 		}
-	]
+	],
+    "ratelimits": [
+        {
+            "name": "SHARE_CREATE_RATE_LIMIT",
+            "namespace_id": "1001",
+            "simple": {
+                "limit": 10,
+                "period": 60
+            }
+        }
+    ]
 	/**
 	 * Smart Placement
 	 * https://developers.cloudflare.com/workers/configuration/smart-placement/#smart-placement
