@@ -1,4 +1,3 @@
-- share button
 - maybe redo font
 - DEPLOYYYY
 - sink points production goal

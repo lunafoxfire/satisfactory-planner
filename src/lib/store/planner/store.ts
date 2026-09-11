@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { persist } from "zustand/middleware";
+import { persist, createJSONStorage } from "zustand/middleware";
 import { createProductionSlice, type ProductionActions } from "./production";
 import { createInputSlice, type InputActions } from "./inputs";
 import { createRecipeSlice, type RecipeActions } from "./recipes";
@@ -19,6 +19,7 @@ export const usePlannerStore = create<PlannerStore>()(
         {
             name: "satisfactory-planner",
             version: 1,
+            storage: createJSONStorage(() => sessionStorage),
             partialize: (state) => ({
                 production: state.production,
                 input: state.input,
