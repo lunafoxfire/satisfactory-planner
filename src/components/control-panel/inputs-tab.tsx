@@ -44,7 +44,7 @@ export function InputsTab() {
             if (a.label > b.label) return 1;
             if (a.label < b.label) return -1;
             return 0;
-        }), [gameData.items]);
+        }), [gameData.items, ficsmasEnabled]);
 
     return (
         <div className="flex flex-col">

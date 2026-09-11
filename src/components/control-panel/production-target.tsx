@@ -28,14 +28,10 @@ export function ProductionTarget({
     const setPriority = usePlannerStore((state) => state.setProductionTargetPriority);
     const removeItem = usePlannerStore((state) => state.removeProductionTarget);
 
-    if (!productionTarget) {
-        return null;
-    }
-
-    const item = productionTarget.itemId ? gameData.items[productionTarget.itemId] : null;
+    const item = productionTarget?.itemId ? gameData.items[productionTarget.itemId] : null;
     const recipeOptions: DropdownItem[] = useMemo(() => {
         const recipeOptions: DropdownItem[] = [];
-        if (!item) return recipeOptions;
+        if (!item || !productionTarget) return recipeOptions;
         for (const recipeId of item.producedFromRecipes) {
             const recipe = gameData.recipes[recipeId];
             if (!recipe) continue;
@@ -46,7 +42,11 @@ export function ProductionTarget({
             });
         }
         return recipeOptions;
-    }, [item, gameData]);
+    }, [item, productionTarget, gameData]);
+
+    if (!productionTarget) {
+        return null;
+    }
 
     return (
         <div className="flex flex-col gap-2 rounded-sm border p-2">

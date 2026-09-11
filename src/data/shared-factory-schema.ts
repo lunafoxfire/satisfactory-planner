@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { GAME_VERSION } from "./game-version";
+import { GAME_VERSION } from "./game-version.ts";
 
 const ProductionTargetSchema = z.discriminatedUnion("mode", [
     z.object({
