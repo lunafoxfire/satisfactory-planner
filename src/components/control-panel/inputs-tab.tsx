@@ -17,6 +17,9 @@ export function InputsTab() {
     const inputItems = usePlannerStore((state) => state.input.items);
     const addInputItem = usePlannerStore((state) => state.addInputItem);
 
+    const addAllIngots = usePlannerStore((state) => state.addAllIngots);
+    const removeAllItems = usePlannerStore((state) => state.removeAllItems);
+
     const inputResources = usePlannerStore((state) => state.input.resources);
     const sortedInputResources = [...inputResources].sort((a, b) => {
         const aValue = gameData.resources[a.itemId].relativeValue;
@@ -52,6 +55,22 @@ export function InputsTab() {
                 title="Inputs"
                 description="Select the inputs already available to your factory."
             >
+                <div className="flex gap-4 mb-4">
+                    <Button
+                        size="sm"
+                        onClick={addAllIngots}
+                    >
+                        <Plus />
+                        Add All Ingots
+                    </Button>
+                    <Button
+                        size="sm"
+                        variant="destructive"
+                        onClick={removeAllItems}
+                    >
+                        Remove All Inputs
+                    </Button>
+                </div>
                 {inputItems.length === 0 ? (
                     <div className="flex h-32 items-center justify-center rounded-md border border-dashed">
                         <Button

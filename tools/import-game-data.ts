@@ -52,6 +52,9 @@ function getResources(resourcesData: Record<string, any>) {
             maxExtraction = resourceData.maxExtraction;
             relativeValue = Math.floor(highestMaxExtraction / maxExtraction * 100);
         }
+        if (resourceKey === "Desc_Coal_C") {
+            relativeValue = 100;
+        }
         resources[resourceKey] = {
             maxExtraction,
             relativeValue,

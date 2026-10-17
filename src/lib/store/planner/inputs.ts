@@ -18,6 +18,9 @@ export interface InputActions {
     setInputItemRate: (id: string, rate: number) => void;
     setInputItemUnlimited: (id: string, unlimited: boolean) => void;
 
+    removeAllItems: () => void;
+    addAllIngots: () => void;
+
     initInputResources: (gameData: GameData) => void;
     setInputResourceRate: (itemId: string, rate: number) => void;
     setInputResourceUnlimited: (itemId: string, unlimited: boolean) => void;
@@ -33,6 +36,29 @@ const defaultInputItem = (): InputItem => ({
     rate: 10,
     unlimited: false,
 });
+
+const INGOT_IDS = [
+    "Desc_IronIngot_C",
+    "Desc_SteelIngot_C",
+    "Desc_CopperIngot_C",
+    "Desc_GoldIngot_C",
+    "Desc_AluminumIngot_C",
+    "Desc_SAMIngot_C",
+    "Desc_Cement_C",
+    "Desc_Silica_C",
+    "Desc_QuartzCrystal_C",
+    "Desc_Plastic_C",
+    "Desc_Rubber_C",
+];
+
+function getIngotInputs(): InputItem[] {
+    return INGOT_IDS.map((itemId) => {
+        const inputItem = defaultInputItem();
+        inputItem.itemId = itemId;
+        inputItem.unlimited = true;
+        return inputItem;
+    });
+}
 
 export const createInputSlice: StateCreator<PlannerStore, [], [], InputSlice>
     = (set) => ({
@@ -90,6 +116,25 @@ export const createInputSlice: StateCreator<PlannerStore, [], [], InputSlice>
                     items: state.input.items.map((item) =>
                         item.id === id ? { ...item, unlimited } : item,
                     ),
+                },
+            })),
+
+        removeAllItems: () =>
+            set((state) => ({
+                input: {
+                    ...state.input,
+                    items: [],
+                },
+            })),
+
+        addAllIngots: () =>
+            set((state) => ({
+                input: {
+                    ...state.input,
+                    items: [
+                        ...state.input.items,
+                        ...getIngotInputs(),
+                    ],
                 },
             })),
 

@@ -113,9 +113,17 @@ function compileSolverInputs(gameData: GameData, store: PlannerState): Record<st
         if (!input.itemId) {
             continue;
         }
+        const item = gameData.items[input.itemId];
+        if (!item) {
+            console.error(`Input item ${input.itemId} has no associated data`);
+            continue;
+        }
 
         const rate = input.unlimited ? Infinity : input.rate;
-        const relativeValue = 0;
+        let relativeValue = 1;
+        if (item.sinkPoints > Math.E) {
+            relativeValue = Math.log(relativeValue);
+        }
         if (solverInputs[input.itemId]) {
             solverInputs[input.itemId].rate += rate;
         }
@@ -131,6 +139,7 @@ function compileSolverInputs(gameData: GameData, store: PlannerState): Record<st
         const resource = gameData.resources[inputResource.itemId];
         if (!resource) {
             console.error(`Input resource ${inputResource.itemId} has no associated data`);
+            continue;
         }
 
         const rate = inputResource.unlimited ? Infinity : inputResource.rate;
