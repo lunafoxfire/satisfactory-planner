@@ -42,6 +42,8 @@ export function ShareButton({ className }: ShareButtonProps) {
             const url = new URL(window.location.href);
             url.searchParams.set("share", id);
 
+            window.history.replaceState(window.history.state, "", url);
+
             await navigator.clipboard.writeText(url.toString());
 
             setIsCopied(true);
