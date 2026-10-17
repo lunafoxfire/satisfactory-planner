@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ChevronsLeft, ChevronsRight } from "lucide-react";
+import { ArrowRightFromLine, Book, ChevronsLeft, ChevronsRight, TrendingUp } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "#components/ui/tabs";
 import { ProductionTab } from "./production-tab";
 import { InputsTab } from "./inputs-tab";
@@ -28,9 +28,9 @@ export function ControlPanel() {
                 className="flex min-h-0 flex-1 flex-col"
             >
                 <TabsList className="grid w-auto shrink-0 grid-cols-3 -mb-1.5" variant="line">
-                    <TabsTrigger value="production">Production</TabsTrigger>
-                    <TabsTrigger value="inputs">Inputs</TabsTrigger>
-                    <TabsTrigger value="recipes">Recipes</TabsTrigger>
+                    <TabsTrigger value="production"><TrendingUp /> Production</TabsTrigger>
+                    <TabsTrigger value="inputs"><ArrowRightFromLine /> Inputs</TabsTrigger>
+                    <TabsTrigger value="recipes"><Book />Recipes</TabsTrigger>
                 </TabsList>
 
                 <TabsContent
