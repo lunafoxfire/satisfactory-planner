@@ -25,7 +25,7 @@ export function ReportsPanel() {
             )}
         >
             <header className="flex h-10 shrink-0 items-center border-b bg-muted p-2">
-                <h2 className="text-md font-semibold">// Reports</h2>
+                <h2 className="text-md font-semibold uppercase">// Reports</h2>
             </header>
             <Tabs
                 value={tab}

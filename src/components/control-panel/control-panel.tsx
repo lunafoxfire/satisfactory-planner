@@ -20,7 +20,7 @@ export function ControlPanel() {
             )}
         >
             <header className="flex h-10 shrink-0 items-center border-b bg-muted p-2">
-                <h2 className="text-md font-semibold">// Control Panel</h2>
+                <h2 className="text-md font-semibold uppercase">// Control Panel</h2>
             </header>
             <Tabs
                 value={tab}
