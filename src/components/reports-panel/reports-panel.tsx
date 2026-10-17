@@ -5,11 +5,12 @@ import {
     TabsList,
     TabsTrigger,
 } from "#components/ui/tabs";
+import { ChartColumn, ChevronsLeft, ChevronsRight, Factory, Package } from "lucide-react";
 import { ScrollArea } from "#components/ui/scroll-area";
-import { StatisticsTab } from "./statistics-tab";
-import { BuildingsTab } from "./buildings-tab";
 import { cn } from "#lib/utils";
-import { ChartColumn, ChevronsLeft, ChevronsRight, Factory } from "lucide-react";
+import { StatisticsTab } from "./statistics-tab";
+import { MaterialsTab } from "./materials-tab";
+import { BuildingsTab } from "./buildings-tab";
 
 export function ReportsPanel() {
     const [tab, setTab] = useState("statistics");
@@ -33,6 +34,7 @@ export function ReportsPanel() {
             >
                 <TabsList className="grid w-auto shrink-0 grid-cols-3 -mb-1.5" variant="line">
                     <TabsTrigger value="statistics"><ChartColumn /> Statistics</TabsTrigger>
+                    <TabsTrigger value="materials"><Package /> Materials</TabsTrigger>
                     <TabsTrigger value="buildings"><Factory /> Buildings</TabsTrigger>
                 </TabsList>
 
@@ -42,6 +44,15 @@ export function ReportsPanel() {
                 >
                     <ScrollArea className="h-full">
                         <StatisticsTab />
+                    </ScrollArea>
+                </TabsContent>
+
+                <TabsContent
+                    value="materials"
+                    className="min-h-0 flex-1 overflow-hidden"
+                >
+                    <ScrollArea className="h-full">
+                        <MaterialsTab />
                     </ScrollArea>
                 </TabsContent>
 
