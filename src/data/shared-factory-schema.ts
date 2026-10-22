@@ -1,6 +1,9 @@
 import { z } from "zod";
 import { GAME_VERSION } from "./game-version.ts";
 
+export const MAX_USER_STRING_LENGTH = 255;
+export const DEFAULT_FACTORY_NAME = "Unnamed Factory";
+
 const ProductionTargetSchema = z.discriminatedUnion("mode", [
     z.object({
         id: z.string(),
@@ -31,6 +34,9 @@ const SolverObjectiveSchema = z.enum([
 
 const ProductionStateSchema = z.object({
     production: z.object({
+        factoryName: z.string()
+            .max(MAX_USER_STRING_LENGTH)
+            .default(DEFAULT_FACTORY_NAME),
         targets: z.array(ProductionTargetSchema),
         objective: SolverObjectiveSchema,
     }),

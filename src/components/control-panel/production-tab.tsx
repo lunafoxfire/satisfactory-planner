@@ -6,12 +6,17 @@ import { useGameData } from "#hooks/use-game-data";
 import { SectionCard } from "#components/section-card";
 import { Dropdown, type DropdownItem } from "#components/dropdown";
 import { ProductionTarget } from "./production-target";
+import { TextInput } from "#components/text-input";
+import { MAX_USER_STRING_LENGTH } from "#data/shared-factory-schema";
 
 
 export function ProductionTab() {
     const gameData = useGameData();
 
     const ficsmasEnabled = usePlannerStore((state) => state.recipes.ficsmasEnabled);
+
+    const factoryName = usePlannerStore((state) => state.production.factoryName);
+    const setFactoryName = usePlannerStore((state) => state.setFactoryName);
 
     const productionTargets = usePlannerStore((state) => state.production.targets);
     const addProductionTarget = usePlannerStore((state) => state.addProductionTarget);
@@ -46,6 +51,14 @@ export function ProductionTab() {
                 description="Select your production targets. When maximizing multiple outputs, the lower priority number will be maximized first."
             >
                 <div className="flex flex-col gap-4">
+                    <TextInput
+                        label="Factory Name"
+                        maxLength={MAX_USER_STRING_LENGTH}
+                        value={factoryName}
+                        onChange={(event) => setFactoryName(event.target.value)}
+                        aria-label="Factory name"
+                    />
+                    <div className="border-b" />
                     <Dropdown
                         label="Optimize Objective"
                         value={objective}

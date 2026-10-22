@@ -2,6 +2,7 @@ import { ReportsPanel } from "#components/reports-panel/reports-panel";
 import { ControlPanel } from "#components/control-panel/control-panel";
 import { ProductionGraphContainer } from "#components/production-graph/production-graph-container";
 import { SolveOnChange } from "./solve-on-change";
+import { UpdateDocumentTitle } from "./update-document-title";
 
 export function AppWorkspace() {
     return (
@@ -10,6 +11,7 @@ export function AppWorkspace() {
             <ControlPanel />
             <ReportsPanel />
             <SolveOnChange />
+            <UpdateDocumentTitle />
         </div>
     );
 }

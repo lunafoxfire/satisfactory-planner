@@ -2,13 +2,15 @@ import type { StateCreator } from "zustand";
 import type { PlannerStore } from "./store";
 import type { SolverObjective } from "#lib/solver/problem";
 
-import type { ProductionTarget } from "#data/shared-factory-schema";
+import { DEFAULT_FACTORY_NAME, type ProductionTarget } from "#data/shared-factory-schema";
 export type { ProductionTarget };
 
 import type { ProductionState } from "#data/shared-factory-schema";
 export type { ProductionState };
 
 export interface ProductionActions {
+    setFactoryName: (value: string) => void;
+
     addProductionTarget: () => void;
     removeProductionTarget: (id: string) => void;
     setProductionTargetItem: (id: string, itemId: string | null) => void;
@@ -32,9 +34,18 @@ const defaultProductionTarget = (): ProductionTarget => ({
 export const createProductionSlice: StateCreator<PlannerStore, [], [], ProductionSlice>
     = (set) => ({
         production: {
+            factoryName: DEFAULT_FACTORY_NAME,
             targets: [],
             objective: "minimizeResourceUsage"
         },
+
+        setFactoryName: (value) =>
+            set((state) => ({
+                production: {
+                    ...state.production,
+                    factoryName: value,
+                },
+            })),
 
         addProductionTarget: () =>
             set((state) => ({
