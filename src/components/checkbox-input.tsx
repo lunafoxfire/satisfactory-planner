@@ -1,4 +1,4 @@
-import { useId } from "react";
+import { useId, useRef } from "react";
 import { Checkbox } from "#components/ui/checkbox";
 import { Field, FieldLabel } from "#components/ui/field";
 import { cn } from "#lib/utils";
@@ -20,6 +20,7 @@ export function CheckboxInput({
 }: CheckboxInputProps) {
     const generatedId = useId();
     const id = providedId ?? generatedId;
+    const checkboxRef = useRef<HTMLButtonElement>(null);
 
     return (
         <Field
@@ -32,8 +33,10 @@ export function CheckboxInput({
         >
             <Checkbox
                 {...checkboxProps}
+                ref={checkboxRef}
                 id={id}
                 className={cn(
+                    "cursor-pointer",
                     variant === "compact" && "size-3 [&_svg]:size-1",
                 )}
                 indicatorClassName={cn(
@@ -44,7 +47,9 @@ export function CheckboxInput({
             {label && (
                 <FieldLabel
                     htmlFor={id}
+                    onClick={(event) => { checkboxRef.current?.click(); event.preventDefault(); }}
                     className={cn(
+                        "cursor-pointer",
                         variant === "compact" && "text-[0.75rem]",
                     )}
                 >
