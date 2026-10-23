@@ -1,5 +1,0 @@
-- maybe redo font
-- sink points production goal
-- additional objectives: complexity, num buildings
-- lock recipe to selected production target recipe
-- recipe picker jumps around when picking recipes???
