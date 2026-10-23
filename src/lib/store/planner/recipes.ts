@@ -11,6 +11,7 @@ export interface RecipeActions {
     setAllRecipesEnabled: () => void;
     setStandardRecipesEnabled: (gameData: GameData) => void;
     setNoRecipesEnabled: () => void;
+    disableRecipesByBuilding: (gameData: GameData, buildingId: string) => void;
     setConversionsEnabled: (enabled: boolean) => void;
     setFicsmasEnabled: (enabled: boolean) => void;
 }
@@ -91,6 +92,24 @@ export const createRecipeSlice: StateCreator<PlannerStore, [], [], RecipeSlice>
                 const enabledRecipes: Record<string, boolean> = {};
                 Object.keys(state.recipes.enabled).forEach((recipeId) => {
                     enabledRecipes[recipeId] = false;
+                });
+                return {
+                    recipes: {
+                        ...state.recipes,
+                        enabled: enabledRecipes,
+                    }
+                };
+            }),
+
+        disableRecipesByBuilding: (gameData, buildingId) =>
+            set((state) => {
+                const enabledRecipes: Record<string, boolean> = {};
+                Object.entries(state.recipes.enabled).forEach(([recipeId, isEnabled]) => {
+                    if (gameData.recipes[recipeId]?.producedIn === buildingId) {
+                        enabledRecipes[recipeId] = false;
+                    } else {
+                        enabledRecipes[recipeId] = isEnabled;
+                    }
                 });
                 return {
                     recipes: {

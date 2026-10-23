@@ -4,7 +4,7 @@ import { SectionCard } from "#components/section-card";
 import { TextInput } from "#components/text-input";
 import { useGameData } from "#hooks/use-game-data";
 import { usePlannerStore } from "#lib/store/planner/store";
-import { Button } from "#components/ui/button";
+import { CommandPopover, type CommandItem } from "#components/command-popover";
 
 export function RecipesTab() {
     const gameData = useGameData();
@@ -13,6 +13,7 @@ export function RecipesTab() {
     const enableAll = usePlannerStore((state) => state.setAllRecipesEnabled);
     const enableStandard = usePlannerStore((state) => state.setStandardRecipesEnabled);
     const enableNone = usePlannerStore((state) => state.setNoRecipesEnabled);
+    const disableByBuilding = usePlannerStore((state) => state.disableRecipesByBuilding);
 
     const conversionsEnabled = usePlannerStore((state) => state.recipes.conversionsEnabled);
     const setConversionsEnabled = usePlannerStore((state) => state.setConversionsEnabled);
@@ -55,9 +56,11 @@ export function RecipesTab() {
             if (!conversionsEnabled && recipe.isConversion) {
                 continue;
             }
+
             if (!ficsmasEnabled && recipe.isFicsmas) {
                 continue;
             }
+
             if (!recipe.normalizedName.includes(normalizedSearch)) {
                 continue;
             }
@@ -74,6 +77,16 @@ export function RecipesTab() {
             alternateRecipes: alternate,
         };
     }, [recipes, conversionsEnabled, ficsmasEnabled, normalizedSearch]);
+
+    const disableByBuildingCommands: CommandItem[] = useMemo(() => {
+        return Object.entries(gameData.buildings)
+            .filter(([_, building]) => !(building.isResourceExtractor || building.power < 0))
+            .map(([buildingId, building]) => ({
+                render: building.name,
+                onTrigger: () => { disableByBuilding(gameData, buildingId); }
+            }))
+            .reverse();
+    }, [gameData, disableByBuilding]);
 
     return (
         <div className="flex flex-col">
@@ -92,36 +105,50 @@ export function RecipesTab() {
                         checked={ficsmasEnabled}
                         onCheckedChange={setFicsmasEnabled}
                     />
+
                     <div className="border-b" />
-                    <TextInput
-                        value={search}
-                        onChange={(event) => setSearch(event.target.value)}
-                        placeholder="Search recipes..."
-                        search
-                    />
-                    <div className="flex gap-2">
-                        <Button
-                            variant="outline"
-                            onClick={enableAll}
-                        >
-                            All
-                        </Button>
-                        <Button
-                            variant="outline"
-                            onClick={() => { enableStandard(gameData); }}
-                        >
-                            Standard
-                        </Button>
-                        <Button
-                            variant="outline"
-                            onClick={enableNone}
-                        >
-                            None
-                        </Button>
+
+                    <div className="flex gap-4">
+                        <TextInput
+                            value={search}
+                            onChange={(event) => setSearch(event.target.value)}
+                            placeholder="Search recipes..."
+                            search
+                        />
+                        <CommandPopover
+                            label="Select Recipes"
+                            commandGroups={[
+                                {
+                                    heading: "Set Recipes",
+                                    commands: [
+                                        {
+                                            render: "All",
+                                            onTrigger: enableAll,
+                                        },
+                                        {
+                                            render: "Standard Only",
+                                            onTrigger: () => enableStandard(gameData),
+                                        },
+                                        {
+                                            render: "None",
+                                            onTrigger: enableNone,
+                                        },
+                                    ],
+                                },
+                                {
+                                    heading: "Disable Recipes By Building",
+                                    commands: disableByBuildingCommands,
+                                },
+                            ]}
+                        />
                     </div>
+
                     <div className="flex gap-2">
                         <div className="flex-1 flex flex-col gap-2">
-                            <span className="text-sm font-semibold border-b pb-1">Standard</span>
+                            <span className="text-sm font-semibold border-b pb-1">
+                                Standard
+                            </span>
+
                             {standardRecipes.map((recipe) => (
                                 <CheckboxInput
                                     key={recipe.recipeId}
@@ -134,9 +161,14 @@ export function RecipesTab() {
                                 />
                             ))}
                         </div>
+
                         <div className="border-l" />
+
                         <div className="flex-1 flex flex-col gap-2">
-                            <span className="text-sm font-semibold border-b pb-1">Alternate</span>
+                            <span className="text-sm font-semibold border-b pb-1">
+                                Alternate
+                            </span>
+
                             {alternateRecipes.map((recipe) => (
                                 <CheckboxInput
                                     key={recipe.recipeId}
