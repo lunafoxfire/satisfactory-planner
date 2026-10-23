@@ -153,7 +153,6 @@ export function ProductionGraph({
             layout: graphLayout,
             minZoom: 0.1,
             maxZoom: 4,
-            wheelSensitivity: 1.0,
             boxSelectionEnabled: true,
             autoungrabify: false,
             autounselectify: false,
