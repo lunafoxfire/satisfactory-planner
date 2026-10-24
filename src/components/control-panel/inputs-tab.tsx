@@ -74,7 +74,7 @@ export function InputsTab() {
                 {inputItems.length === 0 ? (
                     <div className="flex h-32 items-center justify-center rounded-md border border-dashed">
                         <Button
-                            variant="ghost"
+                            variant="outline"
                             onClick={addInputItem}
                         >
                             <Plus />

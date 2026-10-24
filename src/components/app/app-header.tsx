@@ -12,7 +12,7 @@ export function AppHeader() {
     };
 
     return (
-        <header className="flex justify-between h-14 shrink-0 items-center border-b px-4">
+        <header className="flex justify-between h-14 shrink-0 items-center border-b px-2">
             <h1 className="text-lg font-semibold uppercase">// ++++ Simple Satisfactory Planner ++++ //</h1>
             <div className="flex gap-2">
                 <Button
